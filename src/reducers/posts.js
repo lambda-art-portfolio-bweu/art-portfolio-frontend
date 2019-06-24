@@ -9,7 +9,7 @@ const initialPost = {
   error: null
 };
 
-export default function postsReducer(state = [], action) {
+export default function postsReducer(state = initialPost, action) {
   switch (action.type) {
     case types.GET_POSTS:
     case types.GET_POST:

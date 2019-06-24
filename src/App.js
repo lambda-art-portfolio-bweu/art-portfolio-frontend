@@ -1,17 +1,13 @@
 import React from 'react';
 import './App.css';
-
-import { Provider } from 'redux';
-import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-import thunk from 'redux-thunk';
-
-
+import { connect } from 'react-redux';
 
 function App() {
   return (
     <div className="App">
+      Tada
     </div>
   );
 }
 
-export default App;
+export default connect(null,{})(App);
