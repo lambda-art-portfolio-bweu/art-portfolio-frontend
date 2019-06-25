@@ -28,3 +28,27 @@ export function fetchPosts() {
     payload: generatePosts()
   };
 }
+
+function generatePost() {
+    let id = uuid();
+    let title = faker.name.title();
+    let description = faker.lorem.words(30);
+    let categories = ['fashion','nature','sport','art'];
+    let pictureUrl = faker.random.image();
+
+    const post = {
+      id,
+      title,
+      description,
+      categories,
+      pictureUrl,
+    };
+  return post;
+}
+
+export function fetchPost() {
+  return {
+    type: types.GET_POST,
+    payload: generatePost()
+  };
+}
