@@ -10,6 +10,15 @@ const initialUser = {
     email: "",
     password: ""
   }],
+  currentArtist: {
+    id: "",
+    artistName: "",
+    userDescription: "",
+    profilePictureUrl: "",
+    username: "",
+    email: "",
+    password: ""
+  },
   fetching: false,
   adding: false,
   updating: false,
@@ -24,23 +33,19 @@ const initialUser = {
 
 export default function userReducer(state = initialUser, action) {
     switch (action.type) {
-      case types.GET_ARTISTS:
-        return {
-          ...state,
-          fetching: true,
-          artists: action.payload
-        };
+
+      // CRUD artist
       case types.GET_ARTIST:
         return {
           ...state,
           fetching: true,
-          artists: action.payload
+          currentArtist: action.payload
         };
       case types.ADD_ARTIST:
         return {
           ...state,
           adding: true,
-          artists: action.payload
+          artist: action.payload
         };
       case types.UPDATE_ARTIST:
         return {
@@ -54,6 +59,8 @@ export default function userReducer(state = initialUser, action) {
           deleting: true,
           artists: action.payload
         };
+
+        // Artist auth
       case types.LOGIN_ARTIST:
         return {
           ...state,
@@ -75,6 +82,14 @@ export default function userReducer(state = initialUser, action) {
         };
       case types.LOGOUT_SUCCESS:
         return initialUser;
+
+      // Get all artists
+      case types.GET_ALL_ARTISTS:
+        return {
+          ...state,
+          fetching: true,
+          artists: action.payload
+        };
       default:
         return state;
     }

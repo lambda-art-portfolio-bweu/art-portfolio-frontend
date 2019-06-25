@@ -1,16 +1,16 @@
 import React from "react";
 import './App.css';
-import Button from "antd/es/button";
-import PostsView from "./container/PostsView";
-import ArtistsView from "./container/ArtistsView";
+// import PostsView from "./container/PostsView";
+// import ArtistsView from "./container/ArtistsView";
+import ProfileView from "./container/ProfileView";
 
 export default function App(props) {
 
   return (
     <>
-      <Button type="primary">Button</Button>
+      <ProfileView />
       {/* <ArtistsView /> */}
-      <PostsView />
+      {/* <PostsView /> */}
     </>
   );
 }
