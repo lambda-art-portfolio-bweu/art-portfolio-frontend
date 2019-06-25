@@ -3,7 +3,8 @@ import * as types from "../actions/types";
 const initialPost = {
   posts: [
     {
-      name: "",
+      id: '',
+      title: "",
       description: "",
       categories: [],
       pictureUrl: ""

@@ -15,7 +15,7 @@ function ArtistView(props) {
 
 function mapStateToProps(state) {
   return {
-    artists: state.user.artists
+    artists: state.artistsReducer.artists
   };
 }
 
