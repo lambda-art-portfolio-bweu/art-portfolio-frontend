@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import './App.css';
 import { connect } from 'react-redux';
+import { fetchArtists }from './actions/artists';
 
-function App() {
+function App(props) {
+
+  useEffect(() => {
+    props.fetchArtists();
+  },
+  []);
+
   return (
     <div className="App">
-      Tada
+      {props.artists.map(user => (
+        <div key ={user.id}>
+          <p>{user.id}</p>
+          <p>{user.first_name}</p>
+          <p>{user.last_name}</p>
+          <p>{user.email}</p>
+        </div>
+      ))}
     </div>
   );
 }
 
-export default connect(null,{})(App);
+function mapStateToProps(state) {
+  return {
+    artists: state.user.artists,
+  };
+};
+
+export default connect(mapStateToProps, { fetchArtists })(App);

@@ -11,7 +11,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 const store = createStore(
   rootReducer,
-  {},
+  // {},
   compose(
     applyMiddleware(thunk),
     // applyMiddleware(setToken),
