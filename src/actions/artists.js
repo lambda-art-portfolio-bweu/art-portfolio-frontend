@@ -32,5 +32,4 @@ export function fetchArtists() {
         type: types.GET_ARTISTS,
         payload: generateUsers(),
     }
-
 };
