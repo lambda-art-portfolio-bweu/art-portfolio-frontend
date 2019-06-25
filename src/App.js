@@ -1,10 +1,14 @@
 import React from "react";
-import './App.css';
 import ArtistView from "./container/ArtistView";
+import './App.css';
+import Button from "antd/es/button";
 
 export default function App(props) {
 
   return (
-    <ArtistView/>
+    <>
+      <Button type="primary">Button</Button>
+      <ArtistView />
+    </>
   );
 }
