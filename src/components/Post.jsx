@@ -7,7 +7,7 @@ export default function Post(props) {
       <p>{props.post.title}</p>
       <p>{props.post.description}</p>
       { props.post.categories.map(cat => 
-          <span>{cat}</span>
+          <span key={cat}>{cat}</span>
       )}
       <img src={props.post.pictureUrl} alt="" />
     </div>
