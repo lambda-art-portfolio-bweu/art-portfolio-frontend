@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchArtists } from "../actions/artists";
-import Artists from '../components/Artists';
+import Artists from "../components/Artists";
 
 function ArtistView(props) {
   useEffect(() => {
     props.fetchArtists();
   }, []);
 
-  return (
-    <Artists artists={props.artists}/>
-  );
+  return <Artists artists={props.artists} loading={props.loading} />;
 }
 
 function mapStateToProps(state) {
   return {
-    artists: state.artistsReducer.artists
+    artists: state.artistsReducer.artists,
+    loading: state.artistsReducer.fetching
   };
 }
 

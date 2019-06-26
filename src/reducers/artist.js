@@ -27,32 +27,27 @@ export default function userReducer(state = initialUser, action) {
       case types.GET_ARTISTS:
         return {
           ...state,
-          fetching: true,
-          artists: action.payload
+          fetching: true
         };
       case types.GET_ARTIST:
         return {
           ...state,
-          fetching: true,
-          artists: action.payload
+          fetching: true
         };
       case types.ADD_ARTIST:
         return {
           ...state,
-          adding: true,
-          artists: action.payload
+          adding: true
         };
       case types.UPDATE_ARTIST:
         return {
           ...state,
-          updating: true,
-          artists: action.payload
+          updating: true
         };
       case types.DELETE_ARTIST:
         return {
           ...state,
-          deleting: true,
-          artists: action.payload
+          deleting: true
         };
       case types.LOGIN_ARTIST:
         return {
@@ -75,6 +70,25 @@ export default function userReducer(state = initialUser, action) {
         };
       case types.LOGOUT_SUCCESS:
         return initialUser;
+        case types.ERROR:
+          return {
+            ...state,
+            fetching: false,
+            adding: false,
+            updating: false,
+            deleting: false,
+            error: action.payload,
+          };
+      case types.SUCCESS:
+          return {
+            ...state,
+            artists: action.payload,
+            fetching: false,
+            adding: false,
+            updating: false,
+            deleting: false,
+            error: null,
+          };
       default:
         return state;
     }
