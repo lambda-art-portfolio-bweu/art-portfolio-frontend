@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Row, Col, Typography, Button } from 'antd';
 import styled from 'styled-components';
+import AddPostModal from "./AddPostModal";
+
+// Style under component
 
 export default function Profile(props) {
   const [description, setDescription] = useState('');
@@ -29,9 +32,7 @@ export default function Profile(props) {
             </div>
           </Col>
           <Col span={7}>
-            <Title editable={{ onChange: handleName }}>
-              {artistName}
-            </Title>
+            <Title editable={{ onChange: handleName }}>{artistName}</Title>
             <Paragraph editable={{ onChange: handleDescription }}>
               {description}
             </Paragraph>
@@ -40,12 +41,7 @@ export default function Profile(props) {
 
         <Row type="flex" justify="center">
           <StyledButtonsCol span={12}>
-            <Button type="primary" style={{ margin: "0.8rem" }}>
-              Add Post
-            </Button>
-            <Button type="primary" style={{ margin: "0.8rem" }}>
-              Edit Profile
-            </Button>
+            <AddPostModal />
           </StyledButtonsCol>
         </Row>
 
@@ -58,6 +54,8 @@ export default function Profile(props) {
     </Layout>
   );
 }
+
+// Style
 
 // Antd 
 const { Content } = Layout;
