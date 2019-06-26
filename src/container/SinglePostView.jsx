@@ -10,14 +10,15 @@ function PostView(props) {
 
   return (
     <>
-      <SinglePost post={props.post}/>
+      <SinglePost post={props.post} artistName={props.artistName}/>
     </>
   )
 }
 
 function mapStateToProps(state) {
   return {
-    post: state.postsReducer.posts[0]
+    post: state.postsReducer.posts[0],
+    artistName: state.artistsReducer.currentArtist.artistName,
   };
 }
 
