@@ -7,6 +7,8 @@ const ArtistCon = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-items: center;
   align-items: center;
+  padding: 3rem 8vw;
+  grid-gap: 2rem;
 `;
 
 export default function Artists(props) {

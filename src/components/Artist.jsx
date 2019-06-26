@@ -6,7 +6,11 @@ const { Meta } = Card;
 export default function Artist(props) {
   const { artist } = props;
   return (
-    <Card style={{ width: 300, marginTop: 16 }}>
+    <Card
+      hoverable
+      // style={{ width: 300, marginTop: 16 }}
+      cover={<img alt="post" src={artist.pictureUrl} />}
+    >
       <Skeleton loading={props.loading} avatar active>
         <Meta
           avatar={<Avatar src={artist.profilePictureUrl} />}
