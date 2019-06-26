@@ -1,30 +1,9 @@
 import React from 'react';
-import { Layout, Row, Col, Typography, Badge, Avatar, Tag } from "antd";
 import styled from "styled-components";
+import { Layout, Row, Col, Typography, Badge, Avatar, Tag } from "antd";
 
-// Style is under the component
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
-
-const StyledCenterCol = styled(Col)`
-  display: flex;
-  justify-content:center;
-  align-items:center;
-`
-const StyledH1 = styled(Title)`
-  &.ant-typography {
-    margin: 0.5rem 0;
-  }
-`
-const StyledH3 = styled(Title)`
-  &.ant-typography {
-    margin: 0.2rem 0;
-  }
-`
-const ContentStyled = styled(Content)`
-  max-width: 960px;
-  margin:0 auto;
-`
 
 export default function SinglePost(props) {
 
@@ -38,7 +17,7 @@ export default function SinglePost(props) {
 
     return (
       <Layout className="layout">
-        <ContentStyled>
+        <StyledContent>
           <Row type="flex" justify="center">
             <Col span={24}>
               <div style={heroImage}>
@@ -58,9 +37,7 @@ export default function SinglePost(props) {
           </Row>
           <Row type="flex" justify="start">
             <Col>
-              <StyledH3 level={3} style={{ marginRight: 20 }}>
-                {props.artistName}
-              </StyledH3>
+              <StyledH3 level={3} style={{ marginRight: 20 }}>{props.artistName}</StyledH3>
             </Col>
             <StyledCenterCol>
               {props.post.categories.map(cat => (
@@ -73,7 +50,27 @@ export default function SinglePost(props) {
               <Paragraph>{props.post.description}</Paragraph>
             </Col>
           </Row>
-        </ContentStyled>
+        </StyledContent>
       </Layout>
     );
 }
+
+const StyledCenterCol = styled(Col)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const StyledH1 = styled(Title)`
+  &.ant-typography {
+    margin: 0.5rem 0;
+  }
+`
+const StyledH3 = styled(Title)`
+  &.ant-typography {
+    margin: 0.2rem 0;
+  }
+`
+const StyledContent = styled(Content)`
+  max-width: 960px;
+  margin: 0 auto;
+`

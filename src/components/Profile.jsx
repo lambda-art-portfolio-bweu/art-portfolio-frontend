@@ -24,49 +24,65 @@ export default function Profile(props) {
 
   return (
     <Layout className="layout">
-      <Content>
-        <StyledHeader type="flex" justify="center">
-          <Col span={3}>
-            <div>
-              <StyledImg
-                src={props.artist.profilePictureUrl}
-                alt={props.artist.artistName}
-              />
-            </div>
-          </Col>
-          <Col span={7}>
+      <StyledContent>
+        <ArtistinfoRow type="flex" justify="center">
+          <StyledImgCol>
+            <StyledImg
+              src={props.artist.profilePictureUrl}
+              alt={props.artist.artistName}
+            />
+          </StyledImgCol>
+          <StyledInfoCol>
             <Title editable={{ onChange: handleName }}>{artistName}</Title>
             <Paragraph editable={{ onChange: handleDescription }}>
               {description}
             </Paragraph>
-          </Col>
-        </StyledHeader>
+          </StyledInfoCol>
+          <StyledButtonCol>
+            <AddPostModal />
+          </StyledButtonCol>
+        </ArtistinfoRow>
 
         <Row type="flex" justify="center">
-          <StyledButtonsCol span={12}>
-            <AddPostModal />
-          </StyledButtonsCol>
+          <StyledButtonsCol />
         </Row>
 
-        <StyledPosts type="flex" justify="center">
-          <Col span={12}>
+        <StyledPostsRow type="flex" justify="center">
+          <Col>
             <PostsList />
           </Col>
-        </StyledPosts>
-      </Content>
+        </StyledPostsRow>
+      </StyledContent>
     </Layout>
   );
 }
 
 // Style
-
-const StyledHeader = styled(Row)`
-    min-height:150px;
-    padding:2rem 0 0 0;
-    /* display: flex;
-    align-items:center; */
+const StyledContent = styled(Content)`
+  max-width: 960px;
+  margin: 0 auto;
 `
-const StyledPosts = styled(Row)`
+const ArtistinfoRow = styled(Row)`
+  align-items:center;
+  padding: 2rem 0;
+`
+const StyledImgCol = styled(Col)`
+  width:20%;
+`
+const StyledImg = styled.img`
+  width: 100%;
+  max-width: 160px;
+  border-radius: 90%;
+`;
+const StyledInfoCol = styled(Col)`
+  width:60%;
+`
+const StyledButtonCol = styled(Col)`
+  align-self: flex-end;
+  margin-left:-8rem;
+  margin-bottom:-1.5rem;
+`
+const StyledPostsRow = styled(Row)`
   border-top: 0.1rem solid black;
 
   .ant-col {
@@ -78,9 +94,5 @@ const StyledPosts = styled(Row)`
 const StyledButtonsCol = styled(Col)`
     display: flex;
     justify-content: flex-end;
-`
-
-const StyledImg = styled.img`
-    width:100%;
-    max-width: 180px;
+    width:80%;
 `

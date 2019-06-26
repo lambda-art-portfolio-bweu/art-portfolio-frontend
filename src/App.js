@@ -9,7 +9,7 @@ export default function App(props) {
 
   return (
     <>
-      <SinglePostView />
+      {/* <SinglePostView /> */}
       <ProfileView />
       {/* <ArtistsView /> */}
       {/* <PostsView /> */}
