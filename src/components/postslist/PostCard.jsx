@@ -11,6 +11,7 @@ export default function PostCard(props) {
     );
 }
 
+// padding-top value should be a constant set from PostsList
 const StyledRow = styled(Col)`
-  margin-bottom: ${spacerCol};
+  padding-top: 24px;
 `;

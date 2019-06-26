@@ -4,6 +4,8 @@ import { fetchPosts } from "../../actions/posts";
 import PostCard from './PostCard';
 import { Row} from "antd";
 
+//Style 
+export const spacerCol = 24;
 
 function PostsList(props) {
   
@@ -31,6 +33,3 @@ export default connect(
   { fetchPosts }
   )(PostsList);
 
-
-//Style 
-export const spacerCol = 24;

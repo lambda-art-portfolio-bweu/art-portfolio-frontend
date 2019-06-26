@@ -24,7 +24,7 @@ export default function Profile(props) {
 
   return (
     <Layout className="layout">
-      <StyledContent>
+      <Content>
         <StyledHeader type="flex" justify="center">
           <Col span={3}>
             <div>
@@ -53,7 +53,7 @@ export default function Profile(props) {
             <PostsList />
           </Col>
         </StyledPosts>
-      </StyledContent>
+      </Content>
     </Layout>
   );
 }
@@ -63,8 +63,8 @@ export default function Profile(props) {
 const StyledHeader = styled(Row)`
     min-height:150px;
     padding:2rem 0 0 0;
-    display: flex;
-    align-items:center;
+    /* display: flex;
+    align-items:center; */
 `
 const StyledPosts = styled(Row)`
   border-top: 0.1rem solid black;
@@ -83,6 +83,4 @@ const StyledButtonsCol = styled(Col)`
 const StyledImg = styled.img`
     width:100%;
     max-width: 180px;
-`
-const StyledContent = styled(Content)`
 `
