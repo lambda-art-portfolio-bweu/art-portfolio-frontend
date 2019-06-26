@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Row, Col, Typography, Button } from 'antd';
+import { Layout, Row, Col, Typography } from 'antd';
 import styled from 'styled-components';
 import AddPostModal from "./AddPostModal";
+import PostsList from "./postslist/PostsList";
 
-// Style under component
+// Style is under the component
+const { Content } = Layout;
+const { Title, Paragraph } = Typography;
 
 export default function Profile(props) {
   const [description, setDescription] = useState('');
@@ -47,7 +50,7 @@ export default function Profile(props) {
 
         <StyledPosts type="flex" justify="center">
           <Col span={12}>
-            <Title level={3}>No posts yet.</Title>
+            <PostsList />
           </Col>
         </StyledPosts>
       </StyledContent>
@@ -57,11 +60,6 @@ export default function Profile(props) {
 
 // Style
 
-// Antd 
-const { Content } = Layout;
-const { Title, Paragraph } = Typography;
-
-// Styled Components
 const StyledHeader = styled(Row)`
     min-height:150px;
     padding:2rem 0 0 0;
@@ -72,7 +70,6 @@ const StyledPosts = styled(Row)`
   border-top: 0.1rem solid black;
 
   .ant-col {
-    min-height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
