@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Layout, Row, Col, Typography, Button } from 'antd';
 import styled from 'styled-components';
 
 export default function Profile(props) {
+  const [description, setDescription] = useState('');
+  const [artistName, setArtistName] = useState('');
+
+  // Re-render when props are modified
+  useEffect(() => {
+    setDescription(props.artist.userDescription);
+    setArtistName(props.artist.artistName);
+  }, [props])
+
+  // Set the string
+  const handleDescription = str => setDescription(str);
+  const handleName = str => setArtistName(str);
+
   return (
     <Layout className="layout">
       <StyledContent>
@@ -16,8 +29,12 @@ export default function Profile(props) {
             </div>
           </Col>
           <Col span={7}>
-            <Title>{props.artist.artistName}</Title>
-            <Paragraph>{props.artist.userDescription}</Paragraph>
+            <Title editable={{ onChange: handleName }}>
+              {artistName}
+            </Title>
+            <Paragraph editable={{ onChange: handleDescription }}>
+              {description}
+            </Paragraph>
           </Col>
         </StyledHeader>
 
@@ -33,7 +50,7 @@ export default function Profile(props) {
         </Row>
 
         <StyledPosts type="flex" justify="center">
-          <Col span={12} >
+          <Col span={12}>
             <Title level={3}>No posts yet.</Title>
           </Col>
         </StyledPosts>
