@@ -40,3 +40,9 @@ export const registerArtist = (credentials) => dispatch =>  {
   .then(res => res.data)
   .catch(err => err.message)
 }
+
+export const loginArtist = (credentials) => dispatch =>  {
+  Axios.post(`${baseUrl}/auth/login`, credentials)
+  .then(res => res.data)
+  .catch(err => err.message)
+}

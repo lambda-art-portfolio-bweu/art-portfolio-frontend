@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Row, Col, Typography, Empty } from 'antd';
+import { Layout, Row, Col, Typography } from 'antd';
 import styled from 'styled-components';
 import AddPostModal from "../AddPostModal";
 import PostsList from "../postslist/PostsList";
