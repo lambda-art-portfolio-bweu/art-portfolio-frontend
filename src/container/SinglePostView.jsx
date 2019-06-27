@@ -20,7 +20,7 @@ function PostView(props) {
 function mapStateToProps(state) {
   return {
     post: state.postsReducer.posts[0],
-    artistName: state.artistsReducer.currentArtist.artistName,
+    artistName: state.artistsReducer.artists[0].artistName,
   };
 }
 

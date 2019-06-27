@@ -17,9 +17,9 @@ export default function GlobalMenu() {
           backgroundColor: "#fff"
         }}
       >
-        <div>
+        <NavLink to="/">
           <Title style={{ margin: "0px" }}>Art Portfolio</Title>
-        </div>
+        </NavLink>
         <Menu mode="horizontal" style={{ lineHeight: "64px" }}>
           <Menu.Item key="1">
             <NavLink to="/login">Login</NavLink>

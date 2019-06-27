@@ -19,7 +19,7 @@ function ProfileView(props) {
 
 function mapStateToProps(state) {
   return {
-    currentArtist: state.artistsReducer.currentArtist
+    currentArtist: state.artistsReducer.artists[0]
   };
 }
 

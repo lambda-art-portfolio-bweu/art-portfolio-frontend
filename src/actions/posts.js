@@ -51,6 +51,6 @@ function generatePost() {
 export function fetchPost() {
   return {
     type: types.GET_POST,
-    payload: generatePost()
+    payload: [generatePost()]
   };
 }

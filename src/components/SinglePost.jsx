@@ -19,8 +19,6 @@ export default function SinglePost(props) {
   };
 
     return (
-      <StyledLayout className="layout">
-        <GlobalMenu />
         <StyledContent>
           <Row type="flex" justify="center">
             <Col>
@@ -67,19 +65,15 @@ export default function SinglePost(props) {
             </Col>
           </Row>
         </StyledContent>
-      </StyledLayout>
     );
 }
-
-const StyledLayout = styled(Layout)`
-  min-height: 100vh;
-`
 
 const StyledImg = styled.img`
   width:100%;
 `
 const StyledImageDiv = styled.div`
   width:960px;
+  padding-top:2rem;
 `
 const StyledCenterCol = styled(Col)`
   display: flex;
