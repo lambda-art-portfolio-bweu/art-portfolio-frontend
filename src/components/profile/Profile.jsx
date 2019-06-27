@@ -28,13 +28,13 @@ export default function Profile(props) {
       <GlobalMenu />
       <StyledContent>
         <ArtistinfoRow type="flex" justify="center">
-          <StyledImgCol>
+          <StyledImgCol span={6}>
             <StyledImg
               src={props.artist.profilePictureUrl}
               alt={props.artist.artistName}
             />
           </StyledImgCol>
-          <StyledInfoCol>
+          <StyledInfoCol span={18}>
             <Title editable={{ onChange: handleName }}>{artistName}</Title>
             <Paragraph editable={{ onChange: handleDescription }}>
               {description}

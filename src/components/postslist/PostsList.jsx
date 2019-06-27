@@ -15,7 +15,7 @@ function PostsList(props) {
   }, []);
 
 
-  if (!props.posts.length) {
+  if (props.posts.length) {
     return (
         <Row gutter={spacerCol}>
           {props.posts.map(post => (
