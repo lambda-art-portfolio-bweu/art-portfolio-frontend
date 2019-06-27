@@ -50,6 +50,8 @@ export default function userReducer(state = initialUser, action) {
           ...state,
           deleting: true
         };
+
+        // Artist auth
       case types.LOGIN_ARTIST:
         return {
           ...state,

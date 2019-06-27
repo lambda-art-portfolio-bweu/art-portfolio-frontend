@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchArtists } from "../actions/artists";
 import Artists from "../components/Artists";
+import { Layout} from "antd";
+import styled from "styled-components";
+const { Content } = Layout;
 
 function ArtistView(props) {
   useEffect(() => {
@@ -9,7 +12,8 @@ function ArtistView(props) {
   }, []);
 
   return (
-    <>
+    // <StyledContent>
+      <>
       <h1 style={{ textAlign: "center" }}>
         Buy Amazing Photos from even more Amazing Photographers
       </h1>
@@ -29,3 +33,9 @@ export default connect(
   mapStateToProps,
   { fetchArtists }
 )(ArtistView);
+
+const StyledContent = styled(Content)`
+  max-width: 960px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+`;

@@ -1,17 +1,30 @@
 import React from "react";
-import "./App.css";
-import PostsView from "./container/PostsView";
-import ArtistsView from "./container/ArtistsView";
+import Homepage from "./container/Homepage";
+import ProfileView from "./container/ProfileView";
+import SinglePostView from "./container/SinglePostView";
 import Login from "./components/Login";
-import { Route } from "react-router-dom";
+import Signup from './components/Signup';
+import { Route, Switch } from "react-router-dom";
+import { Layout } from "antd";
+import styled from "styled-components";
+import GlobalMenu from "./components/GlobalMenu";
 
 export default function App(props) {
   return (
-    <>
-      <Route path="/" exact component={ArtistsView} />
-      <Route path="/posts" component={PostsView} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={PostsView} />
-    </>
+    <StyledLayout className="layout">
+      <GlobalMenu />
+      <Switch>
+        <Route path="/" exact component={Homepage} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/:username" exact component={ProfileView} />
+        <Route path="/:username/posts/:id" exact component={SinglePostView} />
+        {/* <Route path="/signup" component={PostsView} /> */}
+      </Switch>
+    </StyledLayout>
   );
 }
+
+const StyledLayout = styled(Layout)`
+  min-height: 100vh;
+`;
