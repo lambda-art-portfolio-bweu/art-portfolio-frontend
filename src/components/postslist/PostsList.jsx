@@ -19,7 +19,7 @@ function PostsList(props) {
     return (
         <Row gutter={spacerCol}>
           {props.posts.map(post => (
-            <PostCard post={post} key={post.id} />
+            <PostCard post={post} key={post.id} username={props.username}/>
           ))}
         </Row>
       );

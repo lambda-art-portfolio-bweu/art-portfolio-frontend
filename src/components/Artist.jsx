@@ -9,7 +9,7 @@ export default function Artist(props) {
   const { artist } = props;
 
   return (
-    <Link to={`/${artist.username}`}>
+    <Link to={`/${artist.id}`}>
       <Card
         loading={props.loading}
         hoverable
@@ -24,7 +24,7 @@ export default function Artist(props) {
           <Meta
             avatar={<Avatar src={artist.profilePictureUrl} />}
             title={artist.artistName}
-            description={artist.email}
+            // description={artist.email}
           />
         </Skeleton>
       </Card>

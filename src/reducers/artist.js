@@ -1,8 +1,8 @@
 import * as types from "../actions/types";
 
 const initialState= {
-  artists: Array.from({length: 10}, (d,i) => ({
-    id: i,
+  artists: [{
+    id: '',
     artistName: "",
     userDescription: "",
     profilePictureUrl: "",
@@ -10,7 +10,7 @@ const initialState= {
     email: "",
     pictureUrl: "",
     password: ""
-  })),
+  }],
   fetching: false,
   adding: false,
   updating: false,
