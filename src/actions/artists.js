@@ -1,6 +1,7 @@
 import uuid from "uuid";
 import faker from "faker";
 import * as types from "./types";
+import { generatePosts } from './posts';
 
 function generateUsers() {
   let users = [];
@@ -23,11 +24,16 @@ function generateUsers() {
       password
     });
   }
+  let posts = generatePosts()
+
   return new Promise((resolve, reject) => {
     if (!users) {
       reject("Couldn't fetch Artists");
     }
-    resolve(users);
+    resolve(users.map((user, i) => ({
+      ...user,
+      pictureUrl: posts[i]["pictureUrl"]
+    })));
   });
 }
 

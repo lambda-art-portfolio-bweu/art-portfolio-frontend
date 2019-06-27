@@ -7,8 +7,8 @@ export default function Artist(props) {
   const { artist } = props;
   return (
     <Card
+      loading={props.loading}
       hoverable
-      // style={{ width: 300, marginTop: 16 }}
       cover={<img alt="post" src={artist.pictureUrl} />}
     >
       <Skeleton loading={props.loading} avatar active>

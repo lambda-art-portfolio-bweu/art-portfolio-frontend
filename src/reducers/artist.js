@@ -1,15 +1,16 @@
 import * as types from "../actions/types";
 
 const initialUser = {
-  artists: [{
-    id: "",
+  artists: Array.from({length: 10}, (d,i) => ({
+    id: i,
     artistName: "",
     userDescription: "",
     profilePictureUrl: "",
     username: "",
     email: "",
+    pictureUrl: "",
     password: ""
-  }],
+  })),
   fetching: false,
   adding: false,
   updating: false,
