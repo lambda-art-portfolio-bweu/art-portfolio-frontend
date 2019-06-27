@@ -3,7 +3,6 @@ import { Layout, Row, Col, Typography, Empty } from 'antd';
 import styled from 'styled-components';
 import AddPostModal from "../AddPostModal";
 import PostsList from "../postslist/PostsList";
-import GlobalMenu from '../GlobalMenu';
 
 // Style is under the component
 const { Content } = Layout;
@@ -24,8 +23,6 @@ export default function Profile(props) {
   const handleName = str => setArtistName(str);
 
   return (
-    <StyledLayout className="layout">
-      <GlobalMenu />
       <StyledContent>
         <ArtistinfoRow type="flex" justify="center">
           <StyledImgCol span={6}>
@@ -55,13 +52,8 @@ export default function Profile(props) {
           </Col>
         </StyledPostsRow>
       </StyledContent>
-    </StyledLayout>
   );
 }
-
-const StyledLayout = styled(Layout)`
-  min-height: 100vh;
-`;
 
 const StyledContent = styled(Content)`
   max-width: 960px;
