@@ -85,7 +85,7 @@ const StyledButtonCol = styled(Col)`
   margin-bottom:-1.5rem;
 `
 const StyledPostsRow = styled(Row)`
-  border-top: 0.1rem solid black;
+  /* border-top: 0.1rem solid black; */
 
   .ant-col {
     display: flex;

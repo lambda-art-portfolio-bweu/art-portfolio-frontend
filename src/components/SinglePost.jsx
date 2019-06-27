@@ -14,9 +14,9 @@ export default function SinglePost(props) {
         <StyledContent>
           <Row type="flex" justify="center">
             <Col>
-              <div>
-                <img src={props.post.pictureUrl} alt="" />
-              </div>
+              <StyledImageDiv>
+                <StyledImg src={props.post.pictureUrl} alt="" />
+              </StyledImageDiv>
             </Col>
           </Row>
           <Row type="flex" justify="space-between">
@@ -51,6 +51,12 @@ export default function SinglePost(props) {
     );
 }
 
+const StyledImg = styled.img`
+  width:100%;
+`
+const StyledImageDiv = styled.div`
+  width:960px;
+`
 const StyledCenterCol = styled(Col)`
   display: flex;
   justify-content: center;
