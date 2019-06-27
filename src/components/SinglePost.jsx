@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import GlobalMenu from "./GlobalMenu";
 import { Layout, Row, Col, Typography, Badge, Avatar, Tag } from "antd";
 
 const { Content } = Layout;
@@ -9,6 +10,7 @@ export default function SinglePost(props) {
 
     return (
       <Layout className="layout">
+        <GlobalMenu />
         <StyledContent>
           <Row type="flex" justify="center">
             <Col>
