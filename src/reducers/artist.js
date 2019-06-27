@@ -1,24 +1,16 @@
 import * as types from "../actions/types";
 
 const initialUser = {
-  artists: [{
-    id: "",
+  artists: Array.from({length: 10}, (d,i) => ({
+    id: i,
     artistName: "",
     userDescription: "",
     profilePictureUrl: "",
     username: "",
     email: "",
+    pictureUrl: "",
     password: ""
-  }],
-  currentArtist: {
-    id: "",
-    artistName: "",
-    userDescription: "",
-    profilePictureUrl: "",
-    username: "",
-    email: "",
-    password: ""
-  },
+  })),
   fetching: false,
   adding: false,
   updating: false,
@@ -33,31 +25,30 @@ const initialUser = {
 
 export default function userReducer(state = initialUser, action) {
     switch (action.type) {
-
-      // CRUD artist
+      case types.GET_ARTISTS:
+        return {
+          ...state,
+          fetching: true
+        };
       case types.GET_ARTIST:
         return {
           ...state,
-          fetching: true,
-          currentArtist: action.payload
+          fetching: true
         };
       case types.ADD_ARTIST:
         return {
           ...state,
-          adding: true,
-          artist: action.payload
+          adding: true
         };
       case types.UPDATE_ARTIST:
         return {
           ...state,
-          updating: true,
-          artists: action.payload
+          updating: true
         };
       case types.DELETE_ARTIST:
         return {
           ...state,
-          deleting: true,
-          artists: action.payload
+          deleting: true
         };
 
         // Artist auth
@@ -82,14 +73,25 @@ export default function userReducer(state = initialUser, action) {
         };
       case types.LOGOUT_SUCCESS:
         return initialUser;
-
-      // Get all artists
-      case types.GET_ALL_ARTISTS:
-        return {
-          ...state,
-          fetching: true,
-          artists: action.payload
-        };
+        case types.ERROR:
+          return {
+            ...state,
+            fetching: false,
+            adding: false,
+            updating: false,
+            deleting: false,
+            error: action.payload,
+          };
+      case types.SUCCESS:
+          return {
+            ...state,
+            artists: action.payload,
+            fetching: false,
+            adding: false,
+            updating: false,
+            deleting: false,
+            error: null,
+          };
       default:
         return state;
     }

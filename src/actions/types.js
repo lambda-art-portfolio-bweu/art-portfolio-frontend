@@ -6,7 +6,7 @@ export const UPDATE_POST = 'UPDATE_POST';
 export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
 
-export const GET_ALL_ARTISTS = 'GET_ALL_ARTISTS';
+export const GET_ARTISTS = 'GET_ALL_ARTISTS';
 export const GET_ARTIST = 'GET_ARTIST';
 export const ADD_ARTIST = 'ADD_ARTIST';
 export const UPDATE_ARTIST = 'UPDATE_ARTIST';
