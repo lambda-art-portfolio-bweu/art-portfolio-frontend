@@ -40,7 +40,7 @@ export default function AddPostModal(props) {
           onClick={showModal}
           style={{ margin: "0.8rem" }}
         >
-          Add Post
+          Add a Post
         </Button>
         <Modal
           visible={visible}

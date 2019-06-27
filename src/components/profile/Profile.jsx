@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Row, Col, Typography } from 'antd';
+import { Layout, Row, Col, Typography, Empty } from 'antd';
 import styled from 'styled-components';
-import AddPostModal from "./AddPostModal";
-import PostsList from "./postslist/PostsList";
-import GlobalMenu from './GlobalMenu';
+import AddPostModal from "../AddPostModal";
+import PostsList from "../postslist/PostsList";
+import GlobalMenu from '../GlobalMenu';
 
 // Style is under the component
 const { Content } = Layout;
@@ -24,17 +24,17 @@ export default function Profile(props) {
   const handleName = str => setArtistName(str);
 
   return (
-    <Layout className="layout">
+    <StyledLayout className="layout">
       <GlobalMenu />
       <StyledContent>
         <ArtistinfoRow type="flex" justify="center">
-          <StyledImgCol>
+          <StyledImgCol span={6}>
             <StyledImg
               src={props.artist.profilePictureUrl}
               alt={props.artist.artistName}
             />
           </StyledImgCol>
-          <StyledInfoCol>
+          <StyledInfoCol span={18}>
             <Title editable={{ onChange: handleName }}>{artistName}</Title>
             <Paragraph editable={{ onChange: handleDescription }}>
               {description}
@@ -55,14 +55,18 @@ export default function Profile(props) {
           </Col>
         </StyledPostsRow>
       </StyledContent>
-    </Layout>
+    </StyledLayout>
   );
 }
 
-// Style
+const StyledLayout = styled(Layout)`
+  min-height: 100vh;
+`;
+
 const StyledContent = styled(Content)`
   max-width: 960px;
   margin: 0 auto;
+  margin-bottom:2rem;
 `
 const ArtistinfoRow = styled(Row)`
   align-items:center;
@@ -85,8 +89,6 @@ const StyledButtonCol = styled(Col)`
   margin-bottom:-1.5rem;
 `
 const StyledPostsRow = styled(Row)`
-  /* border-top: 0.1rem solid black; */
-
   .ant-col {
     display: flex;
     align-items: center;

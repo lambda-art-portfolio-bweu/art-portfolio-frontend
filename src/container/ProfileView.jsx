@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { fetchArtist } from "../actions/artist";
-import Profile from "../components/Profile";
+import Profile from "../components/profile/Profile";
 
 
 function ProfileView(props) {

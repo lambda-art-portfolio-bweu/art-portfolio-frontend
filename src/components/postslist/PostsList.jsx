@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchPosts } from "../../actions/posts";
 import PostCard from './PostCard';
-import { Row} from "antd";
+import { Row, Empty } from "antd";
+import AddPostModal from "../AddPostModal";
 
 //Style 
 export const spacerCol = 24;
@@ -13,12 +14,24 @@ function PostsList(props) {
     props.fetchPosts();
   }, []);
 
+
+  if (props.posts.length) {
+    return (
+        <Row gutter={spacerCol}>
+          {props.posts.map(post => (
+            <PostCard post={post} key={post.id} />
+          ))}
+        </Row>
+      );
+  } 
   return (
-    <Row gutter={spacerCol}>
-      {props.posts.map(post => (
-        <PostCard post={post} key={post.id} />
-      ))}
-    </Row>
+    <Empty
+      description={
+        <span>
+          No post yet! <AddPostModal/>
+        </span>
+      }
+    />
   );
 }
   
