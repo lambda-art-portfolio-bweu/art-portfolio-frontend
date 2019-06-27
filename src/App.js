@@ -9,7 +9,7 @@ import { Layout } from "antd";
 import styled from "styled-components";
 import GlobalMenu from "./components/GlobalMenu";
 
-export default function App(props) {
+export default function App() {
   return (
     <StyledLayout className="layout">
       <GlobalMenu />
@@ -19,7 +19,6 @@ export default function App(props) {
         <Route path="/signup" exact component={Signup} />
         <Route path="/:username" exact component={ProfileView} />
         <Route path="/:username/posts/:id" exact component={SinglePostView} />
-        {/* <Route path="/signup" component={PostsView} /> */}
       </Switch>
     </StyledLayout>
   );

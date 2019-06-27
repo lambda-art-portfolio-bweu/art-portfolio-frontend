@@ -42,6 +42,7 @@ export const registerArtist = (credentials) => dispatch =>  {
 }
 
 export const loginArtist = (credentials) => dispatch =>  {
+  dispatch( {type: types.LOGIN_ARTIST});
   Axios.post(`${baseUrl}/auth/login`, credentials)
     .then(res => {
       dispatch({
@@ -49,5 +50,11 @@ export const loginArtist = (credentials) => dispatch =>  {
         payload: res.data.token,
       });
     })
-    .catch(err => err.message);
+    .catch(err => {
+      dispatch({type: types.ERROR, payload: err.message});
+    });
+}
+
+export const logoutArtist = ()  =>  {
+  return {type: types.LOGOUT_ARTIST}
 }
