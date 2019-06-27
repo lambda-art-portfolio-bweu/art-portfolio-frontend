@@ -1,9 +1,12 @@
 import React from "react";
 import { Card, Skeleton, Avatar } from "antd";
 import { Carousel } from "antd";
+import styled from 'styled-components';
 
 const { Meta } = Card;
-
+const Image = styled.img`
+  width: 100%;
+`;
 export default function Artist(props) {
   const { artist } = props;
 
@@ -13,10 +16,10 @@ export default function Artist(props) {
       hoverable
       style={{ width: 300 }}
       cover={
-        <Carousel>
-          <img src={artist.pictureUrl} alt="" />
-          <img src={artist.pictureUrl} alt="" />
-          <img src={artist.pictureUrl} alt="" />
+        <Carousel autoplay>
+          <Image src={artist.pictureUrl} alt="post" />
+          <Image src={artist.pictureUrl} alt="post" />
+          <Image src={artist.pictureUrl} alt="post" />
         </Carousel>
       }
     >

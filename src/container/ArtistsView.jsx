@@ -13,7 +13,7 @@ function ArtistView(props) {
       <h1 style={{ textAlign: "center" }}>
         Buy Amazing Photos from even more Amazing Photographers
       </h1>
-      <Artists artists={props.artists.slice(1, 5)} loading={props.loading} />
+      <Artists artists={props.artists} loading={props.loading} />
     </>
   );
 }
