@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { registerArtist } from '../actions/artist';
+import { registerArtist } from '../actions/artists';
 import styled from 'styled-components';
 import { Form, Icon, Input, Button, Typography, Layout, Row } from "antd";
 

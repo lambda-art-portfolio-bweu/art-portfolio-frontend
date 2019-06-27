@@ -78,7 +78,7 @@ export default function userReducer(state = initialState, action) {
             deleting: false,
             error: action.payload,
           };
-      case types.SUCCESS:
+      case types.SUCCESS_ARTIST:
           return {
             ...state,
             artists: action.payload,

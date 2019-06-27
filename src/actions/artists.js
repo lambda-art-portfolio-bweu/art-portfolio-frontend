@@ -1,8 +1,75 @@
-// import uuid from "uuid";
-// import faker from "faker";
-// import { generatePosts } from './posts';
 import * as types from "./types";
 import Axios from 'axios';
+
+const artistAPI = 'https://art-portfolio-bweu.herokuapp.com/artist';
+
+export const fetchArtists = () => dispatch => {
+  dispatch({
+    type: types.GET_ARTISTS
+  });
+  Axios.get(artistAPI)
+    .then(res => {
+      dispatch({
+        type: types.SUCCESS_ARTIST,
+        payload: res.data.artist
+      });
+    }
+    )
+    .catch(err => {
+      dispatch({
+        type: types.ERROR,
+        payload: err.message
+      });
+    });
+};
+
+export const fetchArtist = id => dispatch => {
+  dispatch({
+    type: types.GET_ARTIST
+  });
+  Axios.get(`${artistAPI}/${id}`)
+    .then(res => {
+      dispatch({
+        type: types.SUCCESS_ARTIST,
+        payload: res.data.artist
+      });
+    }
+    )
+    .catch(err => {
+      dispatch({
+        type: types.ERROR,
+        payload: err.message
+      });
+    });
+};
+
+//
+
+const baseUrl = "https://art-portfolio-bweu.herokuapp.com";
+
+export const registerArtist = credentials => dispatch => {
+  Axios.post(`${baseUrl}/auth/register`, credentials)
+    .then(res => res.data)
+    .catch(err => err.message);
+};
+
+export const loginArtist = credentials => dispatch => {
+  dispatch({ type: types.LOGIN_ARTIST });
+  Axios.post(`${baseUrl}/auth/login`, credentials)
+    .then(res => {
+      dispatch({
+        type: types.LOGIN_SUCCESS,
+        payload: res.data.token
+      });
+    })
+    .catch(err => {
+      dispatch({ type: types.ERROR, payload: err.message });
+    });
+};
+
+export const logoutArtist = () => {
+  return { type: types.LOGOUT_ARTIST };
+};
 
 // function generateUsers() {
 //   let users = [];
@@ -38,28 +105,6 @@ import Axios from 'axios';
 //   });
 // }
 
-const artistApi = 'https://art-portfolio-bweu.herokuapp.com/artist';
-
-export const fetchArtists = () => dispatch => {
-  dispatch({
-    type: types.GET_ARTISTS
-  });
-  Axios.get(artistApi)
-    .then(res => {
-      dispatch({
-        type: types.SUCCESS,
-        payload: res.data.artist
-      });
-    }
-    )
-    .catch(err => {
-      dispatch({
-        type: types.ERROR,
-        payload: err.message
-      });
-    });
-};
-
 // function generateUser() {
 //   let id = uuid();
 //   let artistName = faker.name.findName();
@@ -81,23 +126,3 @@ export const fetchArtists = () => dispatch => {
 
 //   return user;
 // }
-
-export const fetchArtist = id => dispatch => {
-  dispatch({
-    type: types.GET_ARTIST
-  });
-  Axios.get(`${artistApi}/${id}`)
-    .then(res => {
-      dispatch({
-        type: types.SUCCESS,
-        payload: res.data.artist
-      });
-    }
-    )
-    .catch(err => {
-      dispatch({
-        type: types.ERROR,
-        payload: err.message
-      });
-    });
-};
