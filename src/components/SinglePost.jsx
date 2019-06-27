@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import GlobalMenu from "./GlobalMenu";
-import { Layout, Row, Col, Typography, Badge, Avatar, Tag } from "antd";
+import { Layout, Row, Col, Typography, Badge, Avatar, Tag, Icon } from "antd";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 export default function SinglePost(props) {
+  const [heartCount, setHeartCount] = useState(13);
+
+  useEffect(() => {
+    setHeartCount(heartCount)
+  }, [props])
+
+  // Increment counter
+  const handleHeart = () => {
+    setHeartCount(heartCount + 1);
+  };
 
     return (
       <Layout className="layout">
@@ -24,8 +34,18 @@ export default function SinglePost(props) {
               <StyledH1>{props.post.title}</StyledH1>
             </Col>
             <StyledCenterCol style={{ marginRight: 20 }}>
-              <Badge count={13} overflowCount={999}>
-                <Avatar shape="square" icon="heart" />
+              <Badge
+                count={heartCount}
+                overflowCount={999}
+                style={{ backgroundColor: "#108ee9" }}
+              >
+                <Icon
+                  type="heart"
+                  theme="twoTone"
+                  twoToneColor="hsla(0, 83%, 45%, 1)"
+                  style={{ fontSize: "2rem", padding: "0.1rem" }}
+                  onClick={handleHeart}
+                />
               </Badge>
             </StyledCenterCol>
           </Row>
