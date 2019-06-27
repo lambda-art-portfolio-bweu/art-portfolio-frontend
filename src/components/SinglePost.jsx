@@ -7,21 +7,13 @@ const { Title, Paragraph } = Typography;
 
 export default function SinglePost(props) {
 
-  const heroImage = {
-    height: "320px",
-    backgroundImage: `url(${props.post.pictureUrl})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat"
-  };
-
     return (
       <Layout className="layout">
         <StyledContent>
           <Row type="flex" justify="center">
-            <Col span={24}>
-              <div style={heroImage}>
-                {/* empty div to "hold" background-image */}
+            <Col>
+              <div>
+                <img src={props.post.pictureUrl} alt="" />
               </div>
             </Col>
           </Row>
@@ -37,7 +29,9 @@ export default function SinglePost(props) {
           </Row>
           <Row type="flex" justify="start">
             <Col>
-              <StyledH3 level={3} style={{ marginRight: 20 }}>{props.artistName}</StyledH3>
+              <StyledH3 level={3} style={{ marginRight: 20 }}>
+                {props.artistName}
+              </StyledH3>
             </Col>
             <StyledCenterCol>
               {props.post.categories.map(cat => (

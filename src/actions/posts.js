@@ -36,13 +36,13 @@ function generatePost() {
     let categories = ['fashion','nature','sport','art'];
     let pictureUrl = faker.random.image();
 
-    const post = {
+    const post = [{
       id,
       title,
       description,
       categories,
       pictureUrl,
-    };
+    }];
   return post;
 }
 
