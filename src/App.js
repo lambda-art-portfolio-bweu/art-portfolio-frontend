@@ -12,7 +12,7 @@ export default function App(props) {
       <Route path="/" exact component={ArtistsView} />
       <Route path="/posts" component={PostsView} />
       <Route path="/login" component={Login} />
-      //<Route path="/signup" component={PostsView} />
+      {/* <Route path="/signup" component={PostsView} /> */}
       <Route path="/:username/posts/:id" component={SinglePostView} />
       <Route path="/:username" component={ProfileView} />
     </>
