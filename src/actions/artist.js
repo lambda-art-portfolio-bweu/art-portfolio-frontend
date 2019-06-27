@@ -43,6 +43,6 @@ export const registerArtist = (credentials) => dispatch =>  {
 
 export const loginArtist = (credentials) => dispatch =>  {
   Axios.post(`${baseUrl}/auth/login`, credentials)
-  .then(res => res.data)
-  .catch(err => err.message)
+    .then(res => localStorage.setItem('token', res.data.token))
+    .catch(err => err.message);
 }

@@ -1,9 +1,9 @@
 import React from "react";
-import { Form, Icon, Input, Button, Typography, Layout, Row } from "antd";
-import styled from 'styled-components';
-import { registerArtist } from '../actions/artist';
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { registerArtist } from '../actions/artist';
+import styled from 'styled-components';
+import { Form, Icon, Input, Button, Typography, Layout, Row } from "antd";
 
 const { Title } = Typography;
 const { Content } = Layout;
@@ -14,7 +14,7 @@ class NormalLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (err) {
-        alert(err);
+        return null;
       } else {
           values = {
               ...values,

@@ -1,7 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
+import { NavLink } from 'react-router-dom';
+import { loginArtist } from "../actions/artist";
 import styled from "styled-components";
 import { Form, Icon, Input, Button, Typography, Layout, Row } from "antd";
-import { NavLink } from 'react-router-dom';
 
 const { Title } = Typography;
 const { Content } = Layout;
@@ -10,8 +12,10 @@ class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
+      if (err) {
+        return null;
+      } else {
+         this.props.loginArtist(values);
       }
     });
   };
@@ -76,7 +80,7 @@ class NormalLoginForm extends React.Component {
 }
 
 const Login = Form.create({ name: "normal_login" })(NormalLoginForm);
-export default Login;
+export default connect(null, { loginArtist })(Login);
 
 
 const StyledContent = styled(Content)`
