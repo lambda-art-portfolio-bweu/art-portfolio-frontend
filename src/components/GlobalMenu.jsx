@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Layout, Menu, Typography, Avatar } from 'antd';
 import { NavLink } from 'react-router-dom';
+import { LOGOUT } from '../helpers/auth';
 
 const { Header } = Layout;
 const { Title } = Typography;
@@ -26,7 +27,7 @@ export default function GlobalMenu() {
             <NavLink to="/login">Login</NavLink>
           </Menu.Item>
           <Menu.Item key="2">
-            <NavLink to="/">Logout</NavLink>
+            <NavLink to="/" onClick={LOGOUT} >Logout</NavLink>
           </Menu.Item>
           <Menu.Item key="4">
             <NavLink to="/signup">
