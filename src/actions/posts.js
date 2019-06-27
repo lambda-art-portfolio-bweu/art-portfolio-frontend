@@ -41,3 +41,29 @@ export const fetchPost = id => dispatch => {
       });
     });
 };
+
+export const createPost = post => dispatch => {
+  dispatch({
+    type: types.ADD_POST
+  });
+  Axios.post(postsAPI, post, {
+    headers: {
+      "Authorization":
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo3LCJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE1NjE2NTIyMzAsImV4cCI6MTU2MTczODYzMH0.MtUoZsWRkyUAFcXFP-UqDDxHTroWM9tOKL-_8V974Do"
+    }
+  })
+    .then(res => {
+      debugger;
+      dispatch({
+        type: types.SUCCESS_POST,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      debugger;
+      dispatch({
+        type: types.ERROR,
+        payload: err.message
+      });
+    });
+};

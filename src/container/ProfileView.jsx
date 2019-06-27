@@ -13,7 +13,6 @@ function ProfileView(props) {
     props.fetchArtist(id);
   }, []);
 
-  console.log(props.artists);
   return (
     <>
       <Profile artist={props.artists[0]} />

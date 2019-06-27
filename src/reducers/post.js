@@ -4,7 +4,7 @@ const initialPost = {
   posts: [
     {
       id: '',
-      title: "",
+      name: "",
       description: "",
       categories: [],
       pictureUrl: ""

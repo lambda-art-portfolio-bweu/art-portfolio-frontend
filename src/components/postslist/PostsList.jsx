@@ -10,19 +10,22 @@ export const spacerCol = 24;
 
 function PostsList(props) {
   
-  useEffect(() => {
+   useEffect(() => {
     props.fetchPosts();
   }, []);
 
+  // console.table(props.posts.filter(post => post.artist_id === props.id));
 
   if (props.posts.length) {
     return (
-        <Row gutter={spacerCol}>
-          {props.posts.map(post => (
-            <PostCard post={post} key={post.id} username={props.username}/>
+      <Row gutter={spacerCol}>
+        {props.posts
+          .filter(post => post.artist_id === props.id)
+          .map(post => (
+            <PostCard post={post} key={post.id} username={props.username} />
           ))}
-        </Row>
-      );
+      </Row>
+    );
   } 
   return (
     <Empty
