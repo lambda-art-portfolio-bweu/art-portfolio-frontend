@@ -1,6 +1,7 @@
 import uuid from 'uuid';
 import faker from 'faker';
 import * as types from './types';
+import Axios from 'axios';
 
 function generateUser() {
   let id = uuid();
@@ -25,9 +26,17 @@ function generateUser() {
   return user;
 }
 
+const baseUrl = 'https://art-portfolio-bweu.herokuapp.com';
+
 export function fetchArtist() {
   return {
     type: types.GET_ARTIST,
     payload: generateUser()
   };
+}
+
+export const registerArtist = (credentials) => dispatch =>  {
+  Axios.post(`${baseUrl}/auth/register`, credentials)
+  .then(res => res.data)
+  .catch(err => err.message)
 }
