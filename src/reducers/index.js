@@ -1,4 +1,4 @@
-import postsReducer from './posts';
+import postsReducer from './post';
 import artistsReducer from './artist';
 import { combineReducers } from 'redux';
 
