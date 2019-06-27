@@ -15,6 +15,8 @@ export default function Artist(props) {
       cover={
         <Carousel>
           <img src={artist.pictureUrl} alt="" />
+          <img src={artist.pictureUrl} alt="" />
+          <img src={artist.pictureUrl} alt="" />
         </Carousel>
       }
     >
