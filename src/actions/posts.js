@@ -35,13 +35,15 @@ function generatePost() {
   let description = faker.lorem.words(30);
   let categories = ["fashion", "nature", "sport", "art"];
   let pictureUrl = faker.random.image();
+  let heart = 0;
 
   const post = {
     id,
     title,
     description,
     categories,
-    pictureUrl
+    pictureUrl,
+    heart
   };
   return post;
 }
