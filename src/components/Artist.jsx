@@ -1,12 +1,30 @@
-import React from 'react'
+import React from "react";
+import { Card, Skeleton, Avatar } from "antd";
+import { Carousel } from "antd";
+
+const { Meta } = Card;
 
 export default function Artist(props) {
-    return (
-      <div>
-        <p>{props.artist.id}</p>
-        <p>{props.artist.first_name}</p>
-        <p>{props.artist.last_name}</p>
-        <p>{props.artist.email}</p>
-      </div>
-    );
+  const { artist } = props;
+
+  return (
+    <Card
+      loading={props.loading}
+      hoverable
+      style={{ width: 300 }}
+      cover={
+        <Carousel>
+          <img src={artist.pictureUrl} alt="" />
+        </Carousel>
+      }
+    >
+      <Skeleton loading={props.loading} avatar active>
+        <Meta
+          avatar={<Avatar src={artist.profilePictureUrl} />}
+          title={artist.artistName}
+          description={artist.email}
+        />
+      </Skeleton>
+    </Card>
+  );
 }
