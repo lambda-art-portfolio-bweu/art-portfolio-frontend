@@ -8,14 +8,28 @@ import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from './reducers';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { LOGIN_SUCCESS, LOGOUT_ARTIST} from './actions/types';
 
+const addToken = store => next => action => {
+  if (action.type === LOGIN_SUCCESS) {
+    localStorage.setItem("token", action.payload);
+  }
+  next(action);
+};
+
+const removeToken = store => next => action => {
+  if (action.type === LOGOUT_ARTIST) {
+    localStorage.removeItem("token");
+  }
+  next(action);
+};
 
 
 const store = createStore(
   rootReducer,
   // {},
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk, addToken, removeToken),
     // applyMiddleware(setToken),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
