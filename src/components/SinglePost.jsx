@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import GlobalMenu from "./GlobalMenu";
-import { Layout, Row, Col, Typography, Badge, Avatar, Tag, Icon } from "antd";
+import { Layout, Row, Col, Typography, Badge, Tag, Icon, Button } from "antd";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 export default function SinglePost(props) {
-  const [heartCount, setHeartCount] = useState(13);
+
+  console.table(props.posts);
+
+  const [heartCount, setHeartCount] = useState();
 
   useEffect(() => {
     setHeartCount(heartCount)
@@ -19,52 +21,58 @@ export default function SinglePost(props) {
   };
 
     return (
-        <StyledContent>
-          <Row type="flex" justify="center">
-            <Col>
-              <StyledImageDiv>
-                <StyledImg src={props.post.pictureUrl} alt="" />
-              </StyledImageDiv>
-            </Col>
-          </Row>
-          <Row type="flex" justify="space-between">
-            <Col>
-              <StyledH1>{props.post.title}</StyledH1>
-            </Col>
-            <StyledCenterCol style={{ marginRight: 20 }}>
-              <Badge
-                count={heartCount}
-                overflowCount={999}
-                style={{ backgroundColor: "#108ee9" }}
-              >
-                <Icon
-                  type="heart"
-                  theme="twoTone"
-                  twoToneColor="hsla(0, 83%, 45%, 1)"
-                  style={{ fontSize: "2rem", padding: "0.1rem" }}
-                  onClick={handleHeart}
-                />
-              </Badge>
-            </StyledCenterCol>
-          </Row>
-          <Row type="flex" justify="start">
-            <Col>
-              <StyledH3 level={3} style={{ marginRight: 20 }}>
-                {props.artistName}
-              </StyledH3>
-            </Col>
-            <StyledCenterCol>
-              {props.post.categories.map(cat => (
-                <Tag>{cat}</Tag>
-              ))}
-            </StyledCenterCol>
-          </Row>
-          <Row type="flex" justify="center">
-            <Col>
-              <Paragraph>{props.post.description}</Paragraph>
-            </Col>
-          </Row>
-        </StyledContent>
+      <StyledContent>
+        <Row type="flex" justify="center">
+          <Col>
+            <StyledImageDiv>
+              <StyledImg src={props.post.pictureUrl} alt="" />
+            </StyledImageDiv>
+          </Col>
+        </Row>
+
+        <Row type="flex" justify="space-between">
+          <Col>
+            <StyledH1>{props.post.title}</StyledH1>
+          </Col>
+          <StyledCenterCol style={{ marginRight: 20 }}>
+            <Badge
+              count={heartCount}
+              overflowCount={999}
+              style={{ backgroundColor: "#108ee9" }}
+            >
+              <Icon
+                type="heart"
+                theme="twoTone"
+                twoToneColor="hsla(0, 83%, 45%, 1)"
+                style={{ fontSize: "2rem", padding: "0.1rem" }}
+                onClick={handleHeart}
+              />
+            </Badge>
+            <Button onClick={() => props.deletePost(props.post.id)}>
+              Delete
+            </Button>
+          </StyledCenterCol>
+        </Row>
+
+        <Row type="flex" justify="start">
+          <Col>
+            <StyledH3 level={3} style={{ marginRight: 20 }}>
+              {props.artistName}
+            </StyledH3>
+          </Col>
+          <StyledCenterCol>
+            {props.post.categories.map(cat => (
+              <Tag>{cat}</Tag>
+            ))}
+          </StyledCenterCol>
+        </Row>
+
+        <Row type="flex" justify="center">
+          <Col>
+            <Paragraph>{props.post.description}</Paragraph>
+          </Col>
+        </Row>
+      </StyledContent>
     );
 }
 
