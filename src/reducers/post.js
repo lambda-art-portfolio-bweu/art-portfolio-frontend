@@ -45,7 +45,7 @@ export default function postsReducer(state = initialPost, action) {
         deleting: true,
       };
 
-    case types.ERROR:
+    case types.ERROR_POST:
       return {
         ...state,
         fetching: false,

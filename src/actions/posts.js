@@ -16,7 +16,7 @@ export const fetchPosts = () => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: types.ERROR,
+        type: types.ERROR_POST,
         payload: err.message
       });
     });
@@ -36,7 +36,7 @@ export const fetchPost = id => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: types.ERROR,
+        type: types.ERROR_POST,
         payload: err.message
       });
     });
@@ -54,7 +54,7 @@ export const deletePost = id => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: types.ERROR,
+        type: types.ERROR_POST,
         payload: err.message
       });
     });
@@ -78,7 +78,7 @@ export const createPost = post => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: types.ERROR,
+        type: types.ERROR_POST,
         payload: err.message
       });
     });

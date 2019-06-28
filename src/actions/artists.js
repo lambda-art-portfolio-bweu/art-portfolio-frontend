@@ -17,7 +17,7 @@ export const fetchArtists = () => dispatch => {
     )
     .catch(err => {
       dispatch({
-        type: types.ERROR,
+        type: types.ERROR_ARTIST,
         payload: err.message
       });
     });
@@ -29,6 +29,7 @@ export const fetchArtist = id => dispatch => {
   });
   Axios.get(`${artistAPI}/${id}`)
     .then(res => {
+      // debugger
       dispatch({
         type: types.SUCCESS_ARTIST,
         payload: res.data.artist
@@ -36,8 +37,9 @@ export const fetchArtist = id => dispatch => {
     }
     )
     .catch(err => {
+      // debugger
       dispatch({
-        type: types.ERROR,
+        type: types.ERROR_ARTIST,
         payload: err.message
       });
     });
@@ -63,7 +65,7 @@ export const loginArtist = credentials => dispatch => {
       });
     })
     .catch(err => {
-      dispatch({ type: types.ERROR, payload: err.message });
+      dispatch({ type: types.LOGIN_ERROR, payload: err.message });
     });
 };
 

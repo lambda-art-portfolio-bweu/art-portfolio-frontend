@@ -6,7 +6,10 @@ const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 export default function SinglePost(props) {
-  const [heartCount, setHeartCount] = useState(13);
+
+  // console.log(props);
+
+  const [heartCount, setHeartCount] = useState();
 
   useEffect(() => {
     setHeartCount(heartCount)
