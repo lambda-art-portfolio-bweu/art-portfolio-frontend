@@ -1,16 +1,18 @@
 import React from 'react';
-import { Col } from "antd";
+import { Col, Button } from "antd";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
 export default function PostCard(props) {
+  const { post } = props
 
     return (
       // <Link to={`${props.username}`}>
       <StyledCol span={12}>
-        <p>{props.post.name}</p>
-        <p>{props.post.heart}</p>
-        <p>{props.post.description}</p>
+        <Button onClick={() => props.deletePost(post.id)}>Delete</Button>
+        <p>{post.name}</p>
+        <p>{post.heart}</p>
+        <p>{post.description}</p>
         <img src={props.post.pictureUrl} alt="" />
       </StyledCol>
       // </Link>

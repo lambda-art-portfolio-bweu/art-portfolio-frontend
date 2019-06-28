@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchArtists } from "../actions/artists";
+import { fetchPosts } from '../actions/posts'
 import Artists from "../components/Artists";
 import { Layout} from "antd";
 import styled from "styled-components";
@@ -9,6 +10,7 @@ const { Content } = Layout;
 function ArtistView(props) {
   useEffect(() => {
     props.fetchArtists();
+    props.fetchPosts();
   }, []);
 
   return (
@@ -17,7 +19,7 @@ function ArtistView(props) {
       <h1 style={{ textAlign: "center" }}>
         Buy Amazing Photos from even more Amazing Photographers
       </h1>
-      <Artists artists={props.artists} loading={props.loading} />
+      <Artists artists={props.artists} loading={props.loading} posts={props.posts}/>
     </>
   );
 }
@@ -25,13 +27,14 @@ function ArtistView(props) {
 function mapStateToProps(state) {
   return {
     artists: state.artistsReducer.artists,
-    loading: state.artistsReducer.fetching
+    loading: state.artistsReducer.fetching,
+    posts: state.postsReducer.posts
   };
 }
 
 export default connect(
   mapStateToProps,
-  { fetchArtists }
+  { fetchArtists, fetchPosts }
 )(ArtistView);
 
 const StyledContent = styled(Content)`

@@ -41,6 +41,24 @@ export const fetchPost = id => dispatch => {
       });
     });
 };
+export const deletePost = id => dispatch => {
+  dispatch({
+    type: types.DELETE_POST
+  });
+  Axios.delete(`${postsAPI}/${id}`)
+    .then(res => {
+      dispatch({
+        type: types.SUCCESS_POST,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: types.ERROR,
+        payload: err.message
+      });
+    });
+};
 
 export const createPost = post => dispatch => {
   dispatch({

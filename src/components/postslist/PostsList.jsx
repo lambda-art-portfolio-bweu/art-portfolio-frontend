@@ -20,7 +20,7 @@ function PostsList(props) {
         {props.posts
           .filter(post => post.artist_id === props.id)
           .map(post => (
-            <PostCard post={post} key={post.id} username={props.username} />
+            <PostCard deletePost={props.deletePost} post={post} key={post.id} username={props.username} />
           ))}
       </Row>
     );
