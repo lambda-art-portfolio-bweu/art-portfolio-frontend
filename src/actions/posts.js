@@ -30,14 +30,14 @@ export const fetchPost = id => dispatch => {
   });
   Axios.get(`${postsAPI}/${id}`)
     .then(res => {
-      debugger
+      // debugger
       dispatch({
         type: types.SUCCESS_POST,
         payload: res.data
       });
     })
     .catch(err => {
-      debugger
+      // debugger
       dispatch({
         type: types.ERROR_POST,
         payload: err.message
