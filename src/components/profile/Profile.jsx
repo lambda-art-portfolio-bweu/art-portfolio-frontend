@@ -48,7 +48,10 @@ export default function Profile(props) {
 
         <StyledPostsRow type="flex" justify="center">
           <Col>
-            <PostsList username={props.artist.username} id={props.artist.id} />
+            <PostsList
+            deletePost={props.deletePost}
+             username={props.artist.username}
+             id={props.artist.id} />
           </Col>
         </StyledPostsRow>
       </StyledContent>
