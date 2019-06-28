@@ -1,8 +1,8 @@
 import * as types from "../actions/types";
 
-const initialUser = {
-  artists: Array.from({length: 10}, (d,i) => ({
-    id: i,
+const initialState= {
+  artists: [{
+    id: '',
     artistName: "",
     userDescription: "",
     profilePictureUrl: "",
@@ -10,7 +10,7 @@ const initialUser = {
     email: "",
     pictureUrl: "",
     password: ""
-  })),
+  }],
   fetching: false,
   adding: false,
   updating: false,
@@ -20,10 +20,9 @@ const initialUser = {
   loggingIn: false,
   loggingOut: false,
   loggedIn: false,
-  loggedOut: false
 };
 
-export default function userReducer(state = initialUser, action) {
+export default function userReducer(state = initialState, action) {
     switch (action.type) {
       case types.GET_ARTISTS:
         return {
@@ -56,12 +55,11 @@ export default function userReducer(state = initialUser, action) {
         return {
           ...state,
           loggingIn: true,
-          token: action.payload
         };
       case types.LOGOUT_ARTIST:
         return {
           ...state,
-          loggingOut: true
+          loggedIn: false
         };
       case types.LOGIN_SUCCESS:
         return {
@@ -69,11 +67,9 @@ export default function userReducer(state = initialUser, action) {
           loggingIn: false,
           loggedIn: true,
           loggingOut: false,
-          loggedOut: false
+          token: action.payload
         };
-      case types.LOGOUT_SUCCESS:
-        return initialUser;
-        case types.ERROR:
+      case types.ERROR:
           return {
             ...state,
             fetching: false,
@@ -82,7 +78,7 @@ export default function userReducer(state = initialUser, action) {
             deleting: false,
             error: action.payload,
           };
-      case types.SUCCESS:
+      case types.SUCCESS_ARTIST:
           return {
             ...state,
             artists: action.payload,

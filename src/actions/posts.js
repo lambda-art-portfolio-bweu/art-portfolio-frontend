@@ -1,56 +1,69 @@
-import uuid from "uuid";
-import faker from "faker";
 import * as types from "./types";
+import Axios from "axios";
 
-export function generatePosts() {
-  let posts = [];
-  for (let i = 1; i <= 10; i++) {
-    let id = uuid();
-    let title = faker.name.title();
-    let description = faker.lorem.words(30);
-    let categories = ["fashion", "nature", "sport", "art"];
-    let pictureUrl = faker.random.image(0, 0, undefined, false, true);
+const postsAPI = 'https://art-portfolio-bweu.herokuapp.com/posts';
 
-    posts.push({
-      id,
-      title,
-      description,
-      categories,
-      pictureUrl
+export const fetchPosts = () => dispatch => {
+  dispatch({
+    type: types.GET_POSTS
+  });
+  Axios.get(postsAPI)
+  .then(res => {
+      dispatch({
+        type: types.SUCCESS_POST,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: types.ERROR,
+        payload: err.message
+      });
     });
-  }
-  return posts;
-}
+};
 
-export function fetchPosts() {
-  return {
-    type: types.GET_POSTS,
-    payload: generatePosts()
-  };
-}
 
-function generatePost() {
-  let id = uuid();
-  let title = faker.name.title();
-  let description = faker.lorem.words(30);
-  let categories = ["fashion", "nature", "sport", "art"];
-  let pictureUrl = faker.random.image();
-  let heart = 0;
+export const fetchPost = id => dispatch => {
+  dispatch({
+    type: types.GET_POST
+  });
+  Axios.get(`${postsAPI}/${id}`)
+    .then(res => {
+      dispatch({
+        type: types.SUCCESS_POST,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: types.ERROR,
+        payload: err.message
+      });
+    });
+};
 
-  const post = {
-    id,
-    title,
-    description,
-    categories,
-    pictureUrl,
-    heart
-  };
-  return post;
-}
-
-export function fetchPost() {
-  return {
-    type: types.GET_POST,
-    payload: generatePost()
-  };
-}
+export const createPost = post => dispatch => {
+  dispatch({
+    type: types.ADD_POST
+  });
+  Axios.post(postsAPI, post, {
+    headers: {
+      "Authorization":
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo3LCJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE1NjE2NTIyMzAsImV4cCI6MTU2MTczODYzMH0.MtUoZsWRkyUAFcXFP-UqDDxHTroWM9tOKL-_8V974Do"
+    }
+  })
+    .then(res => {
+      debugger;
+      dispatch({
+        type: types.SUCCESS_POST,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      debugger;
+      dispatch({
+        type: types.ERROR,
+        payload: err.message
+      });
+    });
+};

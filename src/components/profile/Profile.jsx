@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Row, Col, Typography, Empty } from 'antd';
+import { Layout, Row, Col, Typography } from 'antd';
 import styled from 'styled-components';
 import AddPostModal from "../AddPostModal";
 import PostsList from "../postslist/PostsList";
-import GlobalMenu from '../GlobalMenu';
 
 // Style is under the component
 const { Content } = Layout;
@@ -24,8 +23,6 @@ export default function Profile(props) {
   const handleName = str => setArtistName(str);
 
   return (
-    <StyledLayout className="layout">
-      <GlobalMenu />
       <StyledContent>
         <ArtistinfoRow type="flex" justify="center">
           <StyledImgCol span={6}>
@@ -41,7 +38,7 @@ export default function Profile(props) {
             </Paragraph>
           </StyledInfoCol>
           <StyledButtonCol>
-            <AddPostModal />
+            <AddPostModal id={props.artist.id}/>
           </StyledButtonCol>
         </ArtistinfoRow>
 
@@ -51,17 +48,12 @@ export default function Profile(props) {
 
         <StyledPostsRow type="flex" justify="center">
           <Col>
-            <PostsList />
+            <PostsList username={props.artist.username} id={props.artist.id} />
           </Col>
         </StyledPostsRow>
       </StyledContent>
-    </StyledLayout>
   );
 }
-
-const StyledLayout = styled(Layout)`
-  min-height: 100vh;
-`;
 
 const StyledContent = styled(Content)`
   max-width: 960px;

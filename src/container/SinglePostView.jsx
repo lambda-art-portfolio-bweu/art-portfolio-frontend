@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchPost } from "../actions/posts";
-import { fetchArtist } from "../actions/artist";
+import { fetchArtist } from "../actions/artists";
 import SinglePost from "../components/SinglePost";
 
 function PostView(props) {
@@ -20,7 +20,7 @@ function PostView(props) {
 function mapStateToProps(state) {
   return {
     post: state.postsReducer.posts[0],
-    artistName: state.artistsReducer.currentArtist.artistName,
+    artistName: state.artistsReducer.artists[0].artistName,
   };
 }
 
