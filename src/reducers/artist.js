@@ -51,21 +51,17 @@ export default function userReducer(state = initialState, action) {
         };
       case types.SUCCESS_ARTIST:
         return {
-          // ...state,
-          artists: action.payload
-          // fetching: false,
-          // adding: false,
-          // updating: false,
-          // deleting: false,
-          // error: null,
-        };
-      case types.ERROR_ARTIST:
-        return {
           ...state,
+          artists: action.payload,
           fetching: false,
           adding: false,
           updating: false,
           deleting: false,
+          error: null,
+        };
+      case types.ERROR_ARTIST:
+        return {
+          ...initialState,
           error: action.payload
         };
 

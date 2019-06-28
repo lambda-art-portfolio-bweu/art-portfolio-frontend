@@ -7,7 +7,7 @@ const { Title, Paragraph } = Typography;
 
 export default function SinglePost(props) {
 
-  // console.log(props);
+  console.table(props.posts);
 
   const [heartCount, setHeartCount] = useState();
 

@@ -1,6 +1,6 @@
 import * as types from "../actions/types";
 
-const initialPost = {
+const initialState = {
   posts: [
     {
       id: '',
@@ -17,7 +17,7 @@ const initialPost = {
   error: null
 };
 
-export default function postsReducer(state = initialPost, action) {
+export default function postsReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_POSTS:
       return {
@@ -47,11 +47,7 @@ export default function postsReducer(state = initialPost, action) {
 
     case types.ERROR_POST:
       return {
-        ...state,
-        fetching: false,
-        adding: false,
-        updating: false,
-        deleting: false,
+        ...initialState,
         error: action.payload
       };
     case types.SUCCESS_POST:
@@ -62,7 +58,7 @@ export default function postsReducer(state = initialPost, action) {
         adding: false,
         updating: false,
         deleting: false,
-        error: null
+        error: false
       };
     default:
       return state;

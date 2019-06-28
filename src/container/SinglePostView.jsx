@@ -5,24 +5,19 @@ import { fetchArtist } from "../actions/artists";
 import SinglePost from "../components/SinglePost";
 
 function PostView(props) {
-
-  console.log(props.artistName);
-
   useEffect(() => {
-    // props.fetchPost();
-    props.fetchArtist(1);
+    props.fetchPost();
+    props.fetchArtist();
   }, []);
 
   return (
     <>
-    {props.artistName}
       <SinglePost post={props.post} artistName={props.artistName} />
     </>
   );
 }
 
 function mapStateToProps(state) {
-  // debugger
   return {
     post: state.postsReducer.posts[0],
     artistName: state.artistsReducer.artists[0].artistName,
