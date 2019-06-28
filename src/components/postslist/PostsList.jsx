@@ -14,8 +14,6 @@ function PostsList(props) {
     props.fetchPosts();
   }, []);
 
-  // console.table(props.posts.filter(post => post.artist_id === props.id));
-
   if (props.posts.length) {
     return (
       <Row gutter={spacerCol}>

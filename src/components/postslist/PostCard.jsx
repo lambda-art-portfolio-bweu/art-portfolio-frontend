@@ -8,6 +8,9 @@ export default function PostCard(props) {
     return (
       // <Link to={`${props.username}`}>
       <StyledCol span={12}>
+        <p>{props.post.name}</p>
+        <p>{props.post.heart}</p>
+        <p>{props.post.description}</p>
         <img src={props.post.pictureUrl} alt="" />
       </StyledCol>
       // </Link>
