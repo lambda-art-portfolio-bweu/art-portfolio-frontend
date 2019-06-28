@@ -1,86 +1,128 @@
-import uuid from "uuid";
-import faker from "faker";
 import * as types from "./types";
-import { generatePosts } from './posts';
+import Axios from 'axios';
 
-function generateUsers() {
-  let users = [];
-  for (let i = 1; i <= 10; i++) {
-    let id = uuid();
-    let artistName = faker.name.findName();
-    let userDescription = faker.lorem.words(20);
-    let profilePictureUrl = faker.image.avatar();
-    let username = faker.name.lastName();
-    let email = faker.internet.email();
-    let password = faker.random.alphaNumeric(10);
-
-    users.push({
-      id,
-      artistName,
-      userDescription,
-      profilePictureUrl,
-      username,
-      email,
-      password
-    });
-  }
-  let posts = generatePosts()
-
-  return new Promise((resolve, reject) => {
-    if (!users) {
-      reject("Couldn't fetch Artists");
-    }
-    resolve(users.map((user, i) => ({
-      ...user,
-      pictureUrl: posts[i]["pictureUrl"]
-    })));
-  });
-}
+const artistAPI = 'https://art-portfolio-bweu.herokuapp.com/artist';
 
 export const fetchArtists = () => dispatch => {
   dispatch({
     type: types.GET_ARTISTS
   });
-  generateUsers()
+  Axios.get(artistAPI)
     .then(res => {
       dispatch({
-        type: types.SUCCESS,
-        payload: res
+        type: types.SUCCESS_ARTIST,
+        payload: res.data.artist
       });
-    })
+    }
+    )
     .catch(err => {
       dispatch({
         type: types.ERROR,
-        payload: err
+        payload: err.message
       });
     });
 };
 
-function generateUser() {
-  let id = uuid();
-  let artistName = faker.name.findName();
-  let userDescription = faker.lorem.words(20);
-  let profilePictureUrl = faker.image.avatar();
-  let username = faker.name.lastName();
-  let email = faker.internet.email();
-  let password = faker.random.alphaNumeric(10);
+export const fetchArtist = id => dispatch => {
+  dispatch({
+    type: types.GET_ARTIST
+  });
+  Axios.get(`${artistAPI}/${id}`)
+    .then(res => {
+      dispatch({
+        type: types.SUCCESS_ARTIST,
+        payload: res.data.artist
+      });
+    }
+    )
+    .catch(err => {
+      dispatch({
+        type: types.ERROR,
+        payload: err.message
+      });
+    });
+};
 
-  const user = {
-    id,
-    artistName,
-    userDescription,
-    profilePictureUrl,
-    username,
-    email,
-    password
-  };
+//
 
-  return user;
-}
+const baseUrl = "https://art-portfolio-bweu.herokuapp.com";
 
-export function fetchArtist() {
-  return {
-    type: types.GET_ARTIST,
-    payload: generateUser()
-  };
-}
+export const registerArtist = credentials => dispatch => {
+  Axios.post(`${baseUrl}/auth/register`, credentials)
+    .then(res => res.data)
+    .catch(err => err.message);
+};
+
+export const loginArtist = credentials => dispatch => {
+  dispatch({ type: types.LOGIN_ARTIST });
+  Axios.post(`${baseUrl}/auth/login`, credentials)
+    .then(res => {
+      dispatch({
+        type: types.LOGIN_SUCCESS,
+        payload: res.data.token
+      });
+    })
+    .catch(err => {
+      dispatch({ type: types.ERROR, payload: err.message });
+    });
+};
+
+export const logoutArtist = () => {
+  return { type: types.LOGOUT_ARTIST };
+};
+
+// function generateUsers() {
+//   let users = [];
+//   for (let i = 1; i <= 10; i++) {
+//     let id = uuid();
+//     let artistName = faker.name.findName();
+//     let userDescription = faker.lorem.words(20);
+//     let profilePictureUrl = faker.image.avatar();
+//     let username = faker.name.lastName();
+//     let email = faker.internet.email();
+//     let password = faker.random.alphaNumeric(10);
+
+//     users.push({
+//       id,
+//       artistName,
+//       userDescription,
+//       profilePictureUrl,
+//       username,
+//       email,
+//       password
+//     });
+//   }
+//   let posts = generatePosts()
+
+//   return new Promise((resolve, reject) => {
+//     if (!users) {
+//       reject("Couldn't fetch Artists");
+//     }
+//     resolve(users.map((user, i) => ({
+//       ...user,
+//       pictureUrl: posts[i]["pictureUrl"]
+//     })));
+//   });
+// }
+
+// function generateUser() {
+//   let id = uuid();
+//   let artistName = faker.name.findName();
+//   let userDescription = faker.lorem.words(20);
+//   let profilePictureUrl = faker.image.avatar();
+//   let username = faker.name.lastName();
+//   let email = faker.internet.email();
+//   let password = faker.random.alphaNumeric(10);
+
+//   const user = {
+//     id,
+//     artistName,
+//     userDescription,
+//     profilePictureUrl,
+//     username,
+//     email,
+//     password
+//   };
+
+//   return user;
+// }

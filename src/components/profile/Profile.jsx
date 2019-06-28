@@ -38,7 +38,7 @@ export default function Profile(props) {
             </Paragraph>
           </StyledInfoCol>
           <StyledButtonCol>
-            <AddPostModal />
+            <AddPostModal id={props.artist.id}/>
           </StyledButtonCol>
         </ArtistinfoRow>
 
@@ -48,7 +48,7 @@ export default function Profile(props) {
 
         <StyledPostsRow type="flex" justify="center">
           <Col>
-            <PostsList />
+            <PostsList username={props.artist.username} id={props.artist.id} />
           </Col>
         </StyledPostsRow>
       </StyledContent>

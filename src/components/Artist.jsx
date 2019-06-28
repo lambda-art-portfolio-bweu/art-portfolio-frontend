@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Skeleton, Avatar } from "antd";
 import { Carousel } from "antd";
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
 const Image = styled.img`
@@ -11,6 +12,7 @@ export default function Artist(props) {
   const { artist } = props;
 
   return (
+<Link to={`/${artist.id}`}>
     <Card
       loading={props.loading}
       hoverable
@@ -31,5 +33,6 @@ export default function Artist(props) {
         />
       </Skeleton>
     </Card>
+    </Link>
   );
 }

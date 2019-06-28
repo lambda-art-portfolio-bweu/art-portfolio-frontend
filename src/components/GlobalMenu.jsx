@@ -10,10 +10,8 @@ export default function GlobalMenu() {
     return (
       <StyledHeader
         style={{
-          //   position: "fixed",
           zIndex: 1,
           width: "100%",
-          //   padding: "0",
           backgroundColor: "#fff"
         }}
       >
@@ -21,14 +19,14 @@ export default function GlobalMenu() {
           <Title style={{ margin: "0px" }}>Art Portfolio</Title>
         </NavLink>
         <Menu mode="horizontal" style={{ lineHeight: "64px" }}>
+          <Menu.Item key="3">
+            <NavLink to="/signup">Signup</NavLink>
+          </Menu.Item>
           <Menu.Item key="1">
             <NavLink to="/login">Login</NavLink>
           </Menu.Item>
           <Menu.Item key="2">
-            <NavLink to="/logout">Logout</NavLink>
-          </Menu.Item>
-          <Menu.Item key="3">
-            <NavLink to="/signup">Signup</NavLink>
+            <NavLink to="/">Logout</NavLink>
           </Menu.Item>
           <Menu.Item key="4">
             <NavLink to="/signup">
