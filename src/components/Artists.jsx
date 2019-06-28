@@ -15,7 +15,7 @@ export default function Artists(props) {
   return (
     <ArtistCon>
       {props.artists.map(artist => (
-        <Artist artist={artist} key={artist.id} loading={props.loading} />
+        <Artist artist={artist} key={artist.id} posts={props.posts} loading={props.loading} />
       ))}
     </ArtistCon>
   );

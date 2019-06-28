@@ -13,7 +13,7 @@ function AddPostModal(props) {
       name: '',
       description:'',
       categories: [],
-      url:'',
+      pictureUrl:'',
     });
 
     useEffect(() => {
@@ -24,7 +24,7 @@ function AddPostModal(props) {
     const showModal = () => setVisible(true);
 
     const handleOk = () => {
-      props.createPost({ ...post, artist_id: props.id });
+      props.createPost({ ...post, artist_id: props.id, heart: 0, categories: post.categories.join` ` });
       setVisible(false);
     };
 
@@ -113,7 +113,7 @@ function AddPostModal(props) {
           <Title level={4}>Direct link to your image</Title>
           <Input
             placeholder="Example: https://website.com/image.jpeg"
-            id="url"
+            id="pictureUrl"
             onChange={e => handleChange(e.target)}
           />
         </Modal>
