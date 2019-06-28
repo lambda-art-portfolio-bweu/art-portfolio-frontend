@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 export default function PostCard(props) {
 
     return (
-      // <Link to={`${props.username}`}>
+      <Link to={`${props.artistID}/posts/${props.post.id}`}>
       <StyledCol span={12}>
         <img src={props.post.pictureUrl} alt="" />
       </StyledCol>
-      // </Link>
+      </Link>
     );
 }
 
