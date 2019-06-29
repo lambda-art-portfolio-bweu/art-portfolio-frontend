@@ -32,7 +32,7 @@ export const fetchPost = id => dispatch => {
     .then(res => {
       // debugger
       dispatch({
-        type: types.SUCCESS_POST,
+        type: types.SUCCESS_GET_POST,
         payload: res.data
       });
     })

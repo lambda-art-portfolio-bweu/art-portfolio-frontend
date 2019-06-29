@@ -11,7 +11,7 @@ function ArtistView(props) {
   useEffect(() => {
     props.fetchArtists();
     props.fetchPosts();
-  }, [props.artists, props.posts]);
+  }, []);
 
   return (
     // <StyledContent>

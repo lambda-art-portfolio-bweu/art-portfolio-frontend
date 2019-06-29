@@ -11,6 +11,7 @@ const initialState= {
     pictureUrl: "",
     password: ""
   }],
+  currentArtist: {},
   fetching: false,
   adding: false,
   updating: false,
@@ -53,6 +54,16 @@ export default function userReducer(state = initialState, action) {
         return {
           ...state,
           artists: action.payload,
+          fetching: false,
+          adding: false,
+          updating: false,
+          deleting: false,
+          error: null,
+        };
+      case types.SUCCESS_GET_ARTIST:
+        return {
+          ...state,
+          currentArtist: action.payload,
           fetching: false,
           adding: false,
           updating: false,

@@ -2,11 +2,13 @@ export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const SUCCESS_GET_POST = 'SUCCESS_GET_POST';
 export const SUCCESS_POST = 'SUCCESS_POST';
 export const ERROR_POST = 'ERROR_POST';
 export const ADD_POST = 'ADD_POST';
 
 export const GET_ARTISTS = 'GET_ARTISTS';
+export const SUCCESS_GET_ARTIST = 'SUCCESS_GET_ARTIST';
 export const GET_ARTIST = 'GET_ARTIST';
 export const UPDATE_ARTIST = 'UPDATE_ARTIST';
 export const DELETE_ARTIST = 'DELETE_ARTIST';

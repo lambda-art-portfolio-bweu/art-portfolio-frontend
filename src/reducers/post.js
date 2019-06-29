@@ -10,6 +10,7 @@ const initialState = {
       pictureUrl: ""
     },
   ],
+  currentPost: {},
   fetching: false,
   adding: false,
   updating: false,
@@ -54,6 +55,16 @@ export default function postsReducer(state = initialState, action) {
       return {
         ...state,
         posts: action.payload,
+        fetching: false,
+        adding: false,
+        updating: false,
+        deleting: false,
+        error: false
+      };
+    case types.SUCCESS_GET_POST:
+      return {
+        ...state,
+        currentPost: action.payload,
         fetching: false,
         adding: false,
         updating: false,
