@@ -5,9 +5,10 @@ import { fetchArtist } from "../actions/artists";
 import SinglePost from "../components/SinglePost";
 
 function PostView(props) {
+  console.log(props);
   useEffect(() => {
-    props.fetchPost();
-    props.fetchArtist();
+    // props.fetchPost();
+    // props.fetchArtist();
   }, []);
 
   return (
@@ -20,7 +21,7 @@ function PostView(props) {
 function mapStateToProps(state) {
   return {
     post: state.postsReducer.posts[0],
-    artistName: state.artistsReducer.artists[0].artistName,
+    artistName: state.artistsReducer.artists[0].artistName
   };
 }
 
