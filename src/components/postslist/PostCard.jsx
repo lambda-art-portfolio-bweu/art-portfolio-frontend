@@ -7,18 +7,21 @@ export default function PostCard(props) {
   const { post } = props;
 
   return (
-    <Link to={`${props.artistID}/posts/${props.post.id}`}>
-      <Card
-        loading={props.loading}
-        hoverable
-        style={{ width: 300 }}
-        cover={<img src={post.pictureUrl} alt="" />}
-        actions={[<Icon type="edit" />, <Icon type="delete" />]}
-      >
-        <Skeleton loading={props.loading} avatar active>
+    <Card
+      loading={props.loading}
+      hoverable
+      style={{ width: 300 }}
+      cover={<img src={post.pictureUrl} alt="" />}
+      actions={[
+        <Icon type="edit" />,
+        <Icon type="delete" onClick={() => props.deletePost(post.id)} />
+      ]}
+    >
+      <Skeleton loading={props.loading} avatar active>
+        <Link to={`${props.artistID}/posts/${props.post.id}`}>
           <Meta title={post.name} description={post.description} />
-        </Skeleton>
-      </Card>
-    </Link>
+        </Link>
+      </Skeleton>
+    </Card>
   );
 }
