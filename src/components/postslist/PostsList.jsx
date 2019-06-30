@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchPosts } from "../../actions/posts";
+import { fetchPosts, deletePost } from "../../actions/posts";
 import PostCard from './PostCard';
 import { Row, Empty } from "antd";
 import AddPostModal from "../AddPostModal";
@@ -12,7 +12,7 @@ function PostsList(props) {
   
    useEffect(() => {
     props.fetchPosts();
-  }, []);
+  }, [props.posts]);
 
   if (props.posts.length) {
     return (
@@ -44,6 +44,6 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchPosts }
+  { fetchPosts, deletePost }
   )(PostsList);
 

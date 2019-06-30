@@ -1,7 +1,7 @@
 import * as types from "./types";
-import Axios from 'axios';
+import Axios from "axios";
 
-const artistAPI = 'https://art-portfolio-bweu.herokuapp.com/artist';
+const artistAPI = "https://art-portfolio-bweu.herokuapp.com/artist";
 
 export const fetchArtists = () => dispatch => {
   dispatch({
@@ -13,8 +13,7 @@ export const fetchArtists = () => dispatch => {
         type: types.SUCCESS_ARTIST,
         payload: res.data.artist
       });
-    }
-    )
+    })
     .catch(err => {
       dispatch({
         type: types.ERROR_ARTIST,
@@ -31,11 +30,10 @@ export const fetchArtist = id => dispatch => {
     .then(res => {
       // debugger
       dispatch({
-        type: types.SUCCESS_ARTIST,
+        type: types.SUCCESS_GET_ARTIST,
         payload: res.data.artist
       });
-    }
-    )
+    })
     .catch(err => {
       // debugger
       dispatch({
