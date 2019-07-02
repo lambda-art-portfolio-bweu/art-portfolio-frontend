@@ -1,13 +1,14 @@
 import * as types from "./types";
 import Axios from "axios";
+import * as Const from "./const";
 
-const postsAPI = 'https://art-portfolio-bweu.herokuapp.com/posts';
+const postsEndpoint = `${Const.baseUrl}/posts`;
 
 export const fetchPosts = () => dispatch => {
   dispatch({
     type: types.GET_POSTS
   });
-  Axios.get(postsAPI)
+  Axios.get(postsEndpoint)
   .then(res => {
       dispatch({
         type: types.SUCCESS_POST,
@@ -28,7 +29,7 @@ export const fetchPost = id => dispatch => {
   dispatch({
     type: types.GET_POST
   });
-  Axios.get(`${postsAPI}/${id}`)
+  Axios.get(`${postsEndpoint}/${id}`)
     .then(res => {
       // debugger
       dispatch({
@@ -48,7 +49,7 @@ export const deletePost = id => dispatch => {
   dispatch({
     type: types.DELETE_POST
   });
-  Axios.delete(`${postsAPI}/${id}`)
+  Axios.delete(`${postsEndpoint}/${id}`)
     .then(res => {
       dispatch({
         type: types.SUCCESS_POST,
@@ -67,7 +68,7 @@ export const createPost = post => dispatch => {
   dispatch({
     type: types.ADD_POST
   });
-  Axios.post(postsAPI, post, {
+  Axios.post(postsEndpoint, post, {
     "headers": {
       "Content-Type": "application/json",
       "Authorization": localStorage.getItem('token')

@@ -14,7 +14,7 @@ export default function Profile(props) {
 
   // Re-render when props are modified
   useEffect(() => {
-    setDescription(props.artist.userDescription);
+    setDescription(props.artist.artistDescription);
     setArtistName(props.artist.artistName);
   }, [props])
 
