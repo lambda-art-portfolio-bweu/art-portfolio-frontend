@@ -72,6 +72,6 @@ export default function postsReducer(state = initialState, action) {
         error: false
       };
     default:
-      return state;
+      return initialState;
   }
 }

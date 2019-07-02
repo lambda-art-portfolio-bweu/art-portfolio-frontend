@@ -30,7 +30,7 @@ export default function GlobalMenu() {
           </Menu.Item>
           <Menu.Item key="4">
             <NavLink to="/signup">
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              <Avatar src="http://image.noelshack.com/fichiers/2019/27/2/1562076338-odtlcjxafvqbxhnvxcyx.png" />
             </NavLink>
           </Menu.Item>
         </Menu>

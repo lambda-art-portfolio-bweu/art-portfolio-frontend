@@ -29,6 +29,7 @@ function ArtistView(props) {
 }
 
 function mapStateToProps(state) {
+  // debugger
   return {
     artists: state.artistsReducer.artists,
     loading: state.artistsReducer.fetching,

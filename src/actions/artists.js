@@ -1,13 +1,15 @@
 import * as types from "./types";
 import Axios from "axios";
+import * as Const from "./const";
 
-const artistAPI = "https://art-portfolio-bweu.herokuapp.com/artist";
+const baseUrl = Const.baseUrl;
+const artistEndpoint = `${Const.baseUrl}/artist`;
 
 export const fetchArtists = () => dispatch => {
   dispatch({
     type: types.GET_ARTISTS
   });
-  Axios.get(artistAPI)
+  Axios.get(artistEndpoint)
     .then(res => {
       dispatch({
         type: types.SUCCESS_ARTIST,
@@ -26,7 +28,7 @@ export const fetchArtist = id => dispatch => {
   dispatch({
     type: types.GET_ARTIST
   });
-  Axios.get(`${artistAPI}/${id}`)
+  Axios.get(`${artistEndpoint}/${id}`)
     .then(res => {
       // debugger
       dispatch({
@@ -44,8 +46,6 @@ export const fetchArtist = id => dispatch => {
 };
 
 //
-
-const baseUrl = "https://art-portfolio-bweu.herokuapp.com";
 
 export const registerArtist = credentials => dispatch => {
   Axios.post(`${baseUrl}/auth/register`, credentials)
