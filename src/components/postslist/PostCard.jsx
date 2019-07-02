@@ -1,25 +1,27 @@
-import React from 'react';
-import { Col, Button } from "antd";
-import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Card, Skeleton, Icon } from "antd";
+import { Link } from "react-router-dom";
 
 export default function PostCard(props) {
-  const { post } = props
+  const { Meta } = Card;
+  const { post } = props;
 
-    return (
-      // <Link to={`${props.username}`}>
-      <StyledCol span={12}>
-        <Button onClick={() => props.deletePost(post.id)}>Delete</Button>
-        <p>{post.name}</p>
-        <p>{post.heart}</p>
-        <p>{post.description}</p>
-        <img src={props.post.pictureUrl} alt="" />
-      </StyledCol>
-      // </Link>
-    );
+  return (
+    <Card
+      loading={props.loading}
+      hoverable
+      style={{ width: 300 }}
+      cover={<img src={post.pictureUrl} alt="" />}
+      actions={[
+        <Icon type="edit" />,
+        <Icon type="delete" onClick={() => props.deletePost(post.id)} />
+      ]}
+    >
+      <Skeleton loading={props.loading} avatar active>
+        <Link to={`${props.artistID}/posts/${props.post.id}`}>
+          <Meta title={post.name} description={post.description} />
+        </Link>
+      </Skeleton>
+    </Card>
+  );
 }
-
-// padding-top value should be a constant set from PostsList
-const StyledCol = styled(Col)`
-  padding-top: 24px;
-`;

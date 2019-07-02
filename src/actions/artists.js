@@ -1,23 +1,24 @@
 import * as types from "./types";
-import Axios from 'axios';
+import Axios from "axios";
+import * as Const from "./const";
 
-const artistAPI = 'https://art-portfolio-bweu.herokuapp.com/artist';
+const baseUrl = Const.baseUrl;
+const artistEndpoint = `${Const.baseUrl}/artist`;
 
 export const fetchArtists = () => dispatch => {
   dispatch({
     type: types.GET_ARTISTS
   });
-  Axios.get(artistAPI)
+  Axios.get(artistEndpoint)
     .then(res => {
       dispatch({
         type: types.SUCCESS_ARTIST,
         payload: res.data.artist
       });
-    }
-    )
+    })
     .catch(err => {
       dispatch({
-        type: types.ERROR,
+        type: types.ERROR_ARTIST,
         payload: err.message
       });
     });
@@ -27,25 +28,24 @@ export const fetchArtist = id => dispatch => {
   dispatch({
     type: types.GET_ARTIST
   });
-  Axios.get(`${artistAPI}/${id}`)
+  Axios.get(`${artistEndpoint}/${id}`)
     .then(res => {
+      // debugger
       dispatch({
-        type: types.SUCCESS_ARTIST,
+        type: types.SUCCESS_GET_ARTIST,
         payload: res.data.artist
       });
-    }
-    )
+    })
     .catch(err => {
+      // debugger
       dispatch({
-        type: types.ERROR,
+        type: types.ERROR_ARTIST,
         payload: err.message
       });
     });
 };
 
 //
-
-const baseUrl = "https://art-portfolio-bweu.herokuapp.com";
 
 export const registerArtist = credentials => dispatch => {
   Axios.post(`${baseUrl}/auth/register`, credentials)
@@ -63,7 +63,7 @@ export const loginArtist = credentials => dispatch => {
       });
     })
     .catch(err => {
-      dispatch({ type: types.ERROR, payload: err.message });
+      dispatch({ type: types.LOGIN_ERROR, payload: err.message });
     });
 };
 

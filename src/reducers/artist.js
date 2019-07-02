@@ -11,6 +11,7 @@ const initialState= {
     pictureUrl: "",
     password: ""
   }],
+  currentArtist: {},
   fetching: false,
   adding: false,
   updating: false,
@@ -49,12 +50,37 @@ export default function userReducer(state = initialState, action) {
           ...state,
           deleting: true
         };
+      case types.SUCCESS_ARTIST:
+        return {
+          ...state,
+          artists: action.payload,
+          fetching: false,
+          adding: false,
+          updating: false,
+          deleting: false,
+          error: null,
+        };
+      case types.SUCCESS_GET_ARTIST:
+        return {
+          ...state,
+          currentArtist: action.payload,
+          fetching: false,
+          adding: false,
+          updating: false,
+          deleting: false,
+          error: null,
+        };
+      case types.ERROR_ARTIST:
+        return {
+          ...initialState,
+          error: action.payload
+        };
 
-        // Artist auth
+      // Artist auth
       case types.LOGIN_ARTIST:
         return {
           ...state,
-          loggingIn: true,
+          loggingIn: true
         };
       case types.LOGOUT_ARTIST:
         return {
@@ -69,25 +95,15 @@ export default function userReducer(state = initialState, action) {
           loggingOut: false,
           token: action.payload
         };
-      case types.ERROR:
-          return {
-            ...state,
-            fetching: false,
-            adding: false,
-            updating: false,
-            deleting: false,
-            error: action.payload,
-          };
-      case types.SUCCESS_ARTIST:
-          return {
-            ...state,
-            artists: action.payload,
-            fetching: false,
-            adding: false,
-            updating: false,
-            deleting: false,
-            error: null,
-          };
+      case types.LOGIN_ERROR:
+        return {
+          ...state,
+          loggingIn: false,
+          loggedIn: false,
+          loggingOut: false,
+          error: action.payload
+        };
+
       default:
         return state;
     }

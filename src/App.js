@@ -18,7 +18,7 @@ export default function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/:id" exact component={ProfileView} />
-        <Route path="/:id/posts/:id" exact component={SinglePostView} />
+        <Route path="/:id/posts/:postId" exact component={SinglePostView} />
       </Switch>
     </StyledLayout>
   );

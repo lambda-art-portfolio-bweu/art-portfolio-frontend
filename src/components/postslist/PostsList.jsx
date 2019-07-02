@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchPosts } from "../../actions/posts";
+import { fetchPosts, deletePost } from "../../actions/posts";
 import PostCard from './PostCard';
 import { Row, Empty } from "antd";
 import AddPostModal from "../AddPostModal";
@@ -12,7 +12,7 @@ function PostsList(props) {
   
    useEffect(() => {
     props.fetchPosts();
-  }, []);
+  }, [props.posts]);
 
   if (props.posts.length) {
     return (
@@ -20,7 +20,7 @@ function PostsList(props) {
         {props.posts
           .filter(post => post.artist_id === props.id)
           .map(post => (
-            <PostCard deletePost={props.deletePost} post={post} key={post.id} username={props.username} />
+            <PostCard deletePost={props.deletePost} post={post} key={post.id} username={props.username} artistID={props.id} />
           ))}
       </Row>
     );
@@ -44,6 +44,6 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchPosts }
+  { fetchPosts, deletePost }
   )(PostsList);
 

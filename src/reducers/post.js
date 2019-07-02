@@ -1,6 +1,6 @@
 import * as types from "../actions/types";
 
-const initialPost = {
+const initialState = {
   posts: [
     {
       id: '',
@@ -10,6 +10,7 @@ const initialPost = {
       pictureUrl: ""
     },
   ],
+  currentPost: {},
   fetching: false,
   adding: false,
   updating: false,
@@ -17,7 +18,7 @@ const initialPost = {
   error: null
 };
 
-export default function postsReducer(state = initialPost, action) {
+export default function postsReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_POSTS:
       return {
@@ -45,13 +46,9 @@ export default function postsReducer(state = initialPost, action) {
         deleting: true,
       };
 
-    case types.ERROR:
+    case types.ERROR_POST:
       return {
-        ...state,
-        fetching: false,
-        adding: false,
-        updating: false,
-        deleting: false,
+        ...initialState,
         error: action.payload
       };
     case types.SUCCESS_POST:
@@ -62,9 +59,19 @@ export default function postsReducer(state = initialPost, action) {
         adding: false,
         updating: false,
         deleting: false,
-        error: null
+        error: false
+      };
+    case types.SUCCESS_GET_POST:
+      return {
+        ...state,
+        currentPost: action.payload,
+        fetching: false,
+        adding: false,
+        updating: false,
+        deleting: false,
+        error: false
       };
     default:
-      return state;
+      return initialState;
   }
 }
