@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Layout, Row, Col, Typography } from 'antd';
 import styled from 'styled-components';
 import AddPostModal from '../AddPostModal';
@@ -9,18 +9,14 @@ const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 export default function Profile(props) {
-  const [description, setDescription] = useState('');
-  const [artistName, setArtistName] = useState('');
 
-  // Re-render when props are modified
-  useEffect(() => {
-    setDescription(props.artist.artistDescription);
-    setArtistName(props.artist.artistName);
-  }, [props]);
+  const handleDescription = str => {
+    props.updateArtist(props.artist.id, { artistDescription: str })
+  }
 
-  // Set the string
-  const handleDescription = str => setDescription(str);
-  const handleName = str => setArtistName(str);
+  const handleName = str => {
+    props.updateArtist(props.artist.id, { artistName: str })
+  };
 
   return (
     <StyledContent>
@@ -32,9 +28,11 @@ export default function Profile(props) {
           />
         </StyledImgCol>
         <StyledInfoCol span={18}>
-          <Title editable={{ onChange: handleName }}>{artistName}</Title>
+          <Title editable={{ onChange: handleName }}>
+            {props.artist.artistName}
+          </Title>
           <Paragraph editable={{ onChange: handleDescription }}>
-            {description}
+            {props.artist.artistDescription}
           </Paragraph>
         </StyledInfoCol>
         <StyledButtonCol>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchArtist } from '../actions/artists';
+import { fetchArtist, updateArtist } from '../actions/artists';
 import Profile from '../components/profile/Profile';
 
 function ProfileView(props) {
@@ -13,7 +13,7 @@ function ProfileView(props) {
 
   return (
     <>
-      <Profile artist={props.artist} />
+      <Profile artist={props.artist} updateArtist={props.updateArtist}/>
     </>
   );
 }
@@ -26,5 +26,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchArtist }
+  { fetchArtist, updateArtist }
 )(ProfileView);
