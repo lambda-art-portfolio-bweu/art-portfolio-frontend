@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-import { fetchArtist } from "../actions/artists";
-import Profile from "../components/profile/Profile";
-
+import { fetchArtist } from '../actions/artists';
+import Profile from '../components/profile/Profile';
 
 function ProfileView(props) {
-
   const { id } = props.match.params;
 
   useEffect(() => {
@@ -15,14 +13,14 @@ function ProfileView(props) {
 
   return (
     <>
-      <Profile artist={props.artists[0]}/>
+      <Profile artist={props.artist} />
     </>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    artists: state.artistsReducer.artists
+    artist: state.artistsReducer.currentArtist
   };
 }
 
