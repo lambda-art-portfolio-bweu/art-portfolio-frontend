@@ -43,6 +43,31 @@ export const fetchArtist = id => dispatch => {
     });
 };
 
+export const updateArtist = (id, currentArtistObj) => dispatch => {
+  dispatch ({type: types.UPDATE_ARTIST});
+  Axios.put(`${artistEndpoint}/${id}`, currentArtistObj, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token")
+    }
+  })
+  .then(res => {
+    debugger
+    dispatch({
+      type: types.SUCCESS_GET_ARTIST,
+      payload: res.data,
+    })
+  })
+  .catch(err => {
+    debugger
+    dispatch({
+      type: types.ERROR_ARTIST,
+      payload: err.message
+    })
+  })
+
+};
+
 export const registerArtist = credentials => dispatch => {
   Axios.post(`${baseUrl}/auth/register`, credentials)
     .then(res => res.data)

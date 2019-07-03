@@ -42,8 +42,8 @@ export default connect(
   { fetchArtists, fetchPosts }
 )(ArtistView);
 
-const StyledContent = styled(Content)`
-  max-width: 960px;
-  margin: 0 auto;
-  margin-bottom: 2rem;
-`;
+// const StyledContent = styled(Content)`
+//   max-width: 960px;
+//   margin: 0 auto;
+//   margin-bottom: 2rem;
+// `;
