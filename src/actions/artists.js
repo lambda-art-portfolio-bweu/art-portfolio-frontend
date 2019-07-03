@@ -1,6 +1,6 @@
-import * as types from "./types";
-import Axios from "axios";
-import * as Const from "./const";
+import * as types from './types';
+import Axios from 'axios';
+import * as Const from './const';
 
 const baseUrl = Const.baseUrl;
 const artistEndpoint = `${Const.baseUrl}/artist`;
@@ -30,10 +30,9 @@ export const fetchArtist = id => dispatch => {
   });
   Axios.get(`${artistEndpoint}/${id}`)
     .then(res => {
-      // debugger
       dispatch({
         type: types.SUCCESS_GET_ARTIST,
-        payload: res.data.artist
+        payload: res.data.artist[0]
       });
     })
     .catch(err => {
