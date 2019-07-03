@@ -1,14 +1,14 @@
-import * as types from "../actions/types";
+import * as types from '../actions/types';
 
 const initialState = {
   posts: [
     {
       id: '',
-      name: "",
-      description: "",
+      name: '',
+      description: '',
       categories: [],
-      pictureUrl: ""
-    },
+      pictureUrl: ''
+    }
   ],
   currentPost: {},
   fetching: false,
@@ -23,27 +23,27 @@ export default function postsReducer(state = initialState, action) {
     case types.GET_POSTS:
       return {
         ...state,
-        fetching: true,
+        fetching: true
       };
     case types.GET_POST:
       return {
         ...state,
-        fetching: true,
+        fetching: true
       };
     case types.ADD_POST:
       return {
         ...state,
-        adding: true,
+        adding: true
       };
     case types.UPDATE_POST:
       return {
         ...state,
-        updating: true,
+        updating: true
       };
     case types.DELETE_POST:
       return {
         ...state,
-        deleting: true,
+        deleting: true
       };
 
     case types.ERROR_POST:
@@ -72,6 +72,6 @@ export default function postsReducer(state = initialState, action) {
         error: false
       };
     default:
-      return initialState;
+      return state;
   }
 }

@@ -23,7 +23,6 @@ function PostsList(props) {
               deletePost={props.deletePost}
               post={post}
               key={post.id}
-              username={props.username}
               artistID={props.id}
             />
           ))}
