@@ -1,6 +1,6 @@
-import * as types from "./types";
-import Axios from "axios";
-import * as Const from "./const";
+import * as types from './types';
+import Axios from 'axios';
+import * as Const from './const';
 
 const baseUrl = Const.baseUrl;
 const artistEndpoint = `${Const.baseUrl}/artist`;
@@ -30,22 +30,18 @@ export const fetchArtist = id => dispatch => {
   });
   Axios.get(`${artistEndpoint}/${id}`)
     .then(res => {
-      // debugger
       dispatch({
         type: types.SUCCESS_GET_ARTIST,
-        payload: res.data.artist
+        payload: res.data.artist[0]
       });
     })
     .catch(err => {
-      // debugger
       dispatch({
         type: types.ERROR_ARTIST,
         payload: err.message
       });
     });
 };
-
-//
 
 export const registerArtist = credentials => dispatch => {
   Axios.post(`${baseUrl}/auth/register`, credentials)
@@ -70,59 +66,3 @@ export const loginArtist = credentials => dispatch => {
 export const logoutArtist = () => {
   return { type: types.LOGOUT_ARTIST };
 };
-
-// function generateUsers() {
-//   let users = [];
-//   for (let i = 1; i <= 10; i++) {
-//     let id = uuid();
-//     let artistName = faker.name.findName();
-//     let userDescription = faker.lorem.words(20);
-//     let profilePictureUrl = faker.image.avatar();
-//     let username = faker.name.lastName();
-//     let email = faker.internet.email();
-//     let password = faker.random.alphaNumeric(10);
-
-//     users.push({
-//       id,
-//       artistName,
-//       userDescription,
-//       profilePictureUrl,
-//       username,
-//       email,
-//       password
-//     });
-//   }
-//   let posts = generatePosts()
-
-//   return new Promise((resolve, reject) => {
-//     if (!users) {
-//       reject("Couldn't fetch Artists");
-//     }
-//     resolve(users.map((user, i) => ({
-//       ...user,
-//       pictureUrl: posts[i]["pictureUrl"]
-//     })));
-//   });
-// }
-
-// function generateUser() {
-//   let id = uuid();
-//   let artistName = faker.name.findName();
-//   let userDescription = faker.lorem.words(20);
-//   let profilePictureUrl = faker.image.avatar();
-//   let username = faker.name.lastName();
-//   let email = faker.internet.email();
-//   let password = faker.random.alphaNumeric(10);
-
-//   const user = {
-//     id,
-//     artistName,
-//     userDescription,
-//     profilePictureUrl,
-//     username,
-//     email,
-//     password
-//   };
-
-//   return user;
-// }
