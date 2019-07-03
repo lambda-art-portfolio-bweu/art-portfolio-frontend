@@ -1,11 +1,10 @@
 import React from 'react';
-import { Layout, Row, Col, Typography } from 'antd';
+import { Row, Col, Typography } from 'antd';
 import styled from 'styled-components';
 import AddPostModal from '../AddPostModal';
 import PostsList from '../postslist/PostsList';
 
 // Style is under the component
-const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 export default function Profile(props) {
@@ -19,47 +18,41 @@ export default function Profile(props) {
   };
 
   return (
-    <StyledContent>
-      <ArtistinfoRow type="flex" justify="center">
-        <StyledImgCol span={6}>
-          <StyledImg
-            src={props.artist.profilePictureUrl}
-            alt={props.artist.artistName}
-          />
-        </StyledImgCol>
-        <StyledInfoCol span={18}>
-          <Title editable={{ onChange: handleName }}>
-            {props.artist.artistName}
-          </Title>
-          <Paragraph editable={{ onChange: handleDescription }}>
-            {props.artist.artistDescription}
-          </Paragraph>
-        </StyledInfoCol>
-        <StyledButtonCol>
-          <AddPostModal id={props.artist.id} />
-        </StyledButtonCol>
-      </ArtistinfoRow>
-
-      <Row type="flex" justify="center">
-        <StyledButtonsCol />
-      </Row>
-
-      <StyledPostsRow type="flex" justify="center">
-        <Col>
-          <PostsList
-            //  username={props.artist.username}
-            id={props.artist.id}
-          />
-        </Col>
-      </StyledPostsRow>
-    </StyledContent>
+      <MainContainer>
+        <ArtistinfoRow type="flex" justify="center">
+          <StyledImgCol>
+            <StyledImg
+              src={props.artist.profilePictureUrl}
+              alt={props.artist.artistName}
+            />
+          </StyledImgCol>
+          <StyledInfoCol>
+            <Title editable={{ onChange: handleName }}>
+              {props.artist.artistName}
+            </Title>
+            <Paragraph editable={{ onChange: handleDescription }}>
+              {props.artist.artistDescription}
+            </Paragraph>
+          </StyledInfoCol>
+          <StyledButtonCol>
+            <AddPostModal id={props.artist.id} />
+          </StyledButtonCol>
+        </ArtistinfoRow>
+        <Row type="flex" justify="center">
+          <StyledButtonsCol />
+        </Row>
+        <StyledPostsRow type="flex" justify="center">
+          <Col>
+            <PostsList
+              id={props.artist.id}
+            />
+          </Col>
+        </StyledPostsRow>
+        </MainContainer>
   );
 }
-
-const StyledContent = styled(Content)`
-  max-width: 960px;
-  margin: 0 auto;
-  margin-bottom: 2rem;
+const MainContainer = styled.div`
+  width: 100%;
 `;
 const ArtistinfoRow = styled(Row)`
   align-items: center;
