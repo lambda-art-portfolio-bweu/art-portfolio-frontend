@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Layout, Row, Col, Typography, Badge, Tag, Icon, Button } from "antd";
+import { Link } from "react-router-dom";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 export default function SinglePost(props) {
-  // const categories = props.post.categories || [];
+
   console.log(props);
 
+  // const categories = props.post.categories || [];
   const [heartCount, setHeartCount] = useState(0);
 
   useEffect(() => {
     setHeartCount(heartCount);
-  }, [props]);
+  }, []);
 
   // Increment counter
   const handleHeart = () => {
@@ -56,9 +58,11 @@ export default function SinglePost(props) {
 
       <Row type="flex" justify="start">
         <Col>
-          <StyledH3 level={3} style={{ marginRight: 20 }}>
-            {props.artistName}
-          </StyledH3>
+          <Link to={`/${props.post.artist_id}`} >
+            <StyledH3 level={3} style={{ marginRight: 20 }}>
+              {props.artistName}
+            </StyledH3>
+          </Link>
         </Col>
         <StyledCenterCol>
           {/* {categories.map(cat => (
