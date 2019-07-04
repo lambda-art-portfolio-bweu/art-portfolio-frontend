@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import { fetchArtists } from "../actions/artists";
 import { fetchPosts } from "../actions/posts";
 import Artists from "../components/artistsblock/ArtistsGrid";
-import { Layout } from "antd";
-import styled from "styled-components";
-const { Content } = Layout;
 
 function ArtistView(props) {
   useEffect(() => {
@@ -41,9 +38,3 @@ export default connect(
   mapStateToProps,
   { fetchArtists, fetchPosts }
 )(ArtistView);
-
-// const StyledContent = styled(Content)`
-//   max-width: 960px;
-//   margin: 0 auto;
-//   margin-bottom: 2rem;
-// `;
