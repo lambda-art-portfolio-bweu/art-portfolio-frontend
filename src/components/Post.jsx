@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Layout, Row, Col, Typography, Badge, Tag, Icon, Button, Modal } from "antd";
 import { Link } from "react-router-dom";
 
+import camera from "../assets/camera.svg";
+
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 const { confirm } = Modal;
@@ -44,9 +46,9 @@ export default function Post(props) {
     <StyledContent>
       <Row type="flex" justify="center">
         <Col>
-          <StyledImageDiv>
-            <StyledImg src={props.post.pictureUrl} alt="" />
-          </StyledImageDiv>
+          <PictureContainer>
+            <HeroImg src={props.post.pictureUrl} alt="" />
+          </PictureContainer>
         </Col>
       </Row>
 
@@ -100,12 +102,21 @@ export default function Post(props) {
   );
 }
 
-const StyledImg = styled.img`
-  width: 100%;
-`;
-const StyledImageDiv = styled.div`
+const PictureContainer = styled.div`
   width: 960px;
   padding-top: 2rem;
+  background: url(${camera}) no-repeat center;
+  background-size: 5%;
+  position:relative;
+`;
+const HeroImg = styled.img`
+  width: 100%;
+  transition: all 0.6s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
 `;
 const StyledCenterCol = styled(Col)`
   display: flex;
