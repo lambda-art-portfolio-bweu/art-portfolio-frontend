@@ -59,13 +59,12 @@ export const updateArtist = (id, currentArtistObj) => dispatch => {
     })
   })
   .catch(err => {
-    debugger
+    // debugger
     dispatch({
       type: types.ERROR_ARTIST,
       payload: err.message
     })
   })
-
 };
 
 export const registerArtist = credentials => dispatch => {

@@ -1,27 +1,28 @@
 import React from "react";
-import Homepage from "./container/HomeView";
-import ProfileView from "./container/ProfileView";
-import SinglePostView from "./container/PostView";
-import Login from "./components/Login";
-import Signup from './components/Signup';
 import { Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 import styled from "styled-components";
-import GlobalMenu from "./components/HeaderMenu";
+
+import Homepage from "./container/HomeView";
+import ProfileView from "./container/ProfileView";
+import PostView from "./container/PostView";
+import Login from "./components/Login";
+import Signup from './components/Signup';
+import HeaderMenu from "./components/HeaderMenu";
 
 const { Content } = Layout;
 
 export default function App() {
   return (
     <StyledLayout className="layout">
-      <GlobalMenu />
+      <HeaderMenu />
         <StyledContent>
           <Switch>
             <Route path="/" exact component={Homepage} />
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
             <Route path="/:id" exact component={ProfileView} />
-            <Route path="/:id/posts/:postId" exact component={SinglePostView} />
+            <Route path="/:id/posts/:postId" exact component={PostView} />
           </Switch>
       </StyledContent>
     </StyledLayout>

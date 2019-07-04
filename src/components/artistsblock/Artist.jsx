@@ -1,6 +1,5 @@
 import React from "react";
-import { Card, Skeleton, Avatar } from "antd";
-import { Carousel } from "antd";
+import { Card, Skeleton, Avatar, Carousel } from "antd";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 

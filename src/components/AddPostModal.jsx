@@ -3,7 +3,6 @@ import { Modal, Button, Input, Typography, Select } from "antd";
 import { connect } from 'react-redux';
 import { createPost } from '../actions/posts';
 
-const { TextArea } = Input;
 const { Title } = Typography;
 const { Option } = Select;
 
@@ -28,10 +27,6 @@ function AddPostModal(props) {
       setVisible(false);
     };
 
-    // const createPost= () => {
-    //   console.log(post);
-    // };
-
     const handleCancel = () => setVisible(false);
 
     // Modal categories actions
@@ -39,9 +34,9 @@ function AddPostModal(props) {
         setPost({...post,[target.id]: target.value});
     };
 
-        const handleCategories = value => {
-          setPost({ ...post, categories: value });
-        };
+    const handleCategories = value => {
+      setPost({ ...post, categories: value });
+    };
 
     return (
       <div>
