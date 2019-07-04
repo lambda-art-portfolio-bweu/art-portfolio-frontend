@@ -14,6 +14,14 @@ export default function Post(props) {
     props.updatePost(props.post.id, { heart: heartCount });
   };
 
+  const handleTitle = str => {
+    props.updatePost(props.post.id, { name: str });
+  };
+
+  const handleDescription = str => {
+    props.updatePost(props.post.id, { description: str });
+  };
+
   const showDeleteConfirm = () => {
     confirm({
       title: "Are you sure you want to delete this post?",
@@ -44,7 +52,9 @@ export default function Post(props) {
 
       <Row type="flex" justify="space-between">
         <Col>
-          <StyledH1>{props.post.name}</StyledH1>
+          <StyledH1 editable={{ onChange: handleTitle }}>
+            {props.post.name}
+          </StyledH1>
         </Col>
         <StyledCenterCol style={{ marginRight: 20 }}>
           <Badge
@@ -60,7 +70,6 @@ export default function Post(props) {
             />
           </Badge>
           <Button onClick={showDeleteConfirm}>Delete</Button>
-          <Button>Edit</Button>
         </StyledCenterCol>
       </Row>
 
@@ -82,7 +91,9 @@ export default function Post(props) {
 
       <Row type="flex" justify="center">
         <Col>
-          <Paragraph>{props.post.description}</Paragraph>
+          <Paragraph editable={{ onChange: handleDescription }}>
+            {props.post.description}
+          </Paragraph>
         </Col>
       </Row>
     </StyledContent>
