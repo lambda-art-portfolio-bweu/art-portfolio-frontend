@@ -1,13 +1,13 @@
 import React from "react";
-import Homepage from "./container/Homepage";
+import Homepage from "./container/HomeView";
 import ProfileView from "./container/ProfileView";
-import SinglePostView from "./container/SinglePostView";
+import SinglePostView from "./container/PostView";
 import Login from "./components/Login";
 import Signup from './components/Signup';
 import { Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 import styled from "styled-components";
-import GlobalMenu from "./components/GlobalMenu";
+import GlobalMenu from "./components/HeaderMenu";
 
 const { Content } = Layout;
 

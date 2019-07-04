@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchArtists } from "../actions/artists";
 import { fetchPosts } from "../actions/posts";
-import Artists from "../components/Artists";
+import Artists from "../components/artistsblock/ArtistsGrid";
 import { Layout } from "antd";
 import styled from "styled-components";
 const { Content } = Layout;

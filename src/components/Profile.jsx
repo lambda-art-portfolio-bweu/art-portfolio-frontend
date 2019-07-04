@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row, Col, Typography } from 'antd';
 import styled from 'styled-components';
-import AddPostModal from '../AddPostModal';
-import PostsList from '../postslist/PostsList';
+import AddPostModal from './AddPostModal';
+import PostsList from './postsblock/PostsGrid';
 
 // Style is under the component
 const { Title, Paragraph } = Typography;
