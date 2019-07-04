@@ -7,39 +7,37 @@ const { Header } = Layout;
 const { Title } = Typography;
 
 export default function GlobalMenu() {
-    return (
-      <StyledHeader
-        style={{
-          zIndex: 1,
-          width: "100%",
-          backgroundColor: "#fff"
-        }}
-      >
-        <NavLink to="/">
-          <Title style={{ margin: "0px" }}>Art Portfolio</Title>
-        </NavLink>
-        <Menu mode="horizontal" style={{ lineHeight: "64px" }}>
-          <Menu.Item key="3">
-            <NavLink to="/signup">Signup</NavLink>
-          </Menu.Item>
-          <Menu.Item key="1">
-            <NavLink to="/login">Login</NavLink>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <NavLink to="/">Logout</NavLink>
-          </Menu.Item>
-          <Menu.Item key="4">
-            <NavLink to="/signup">
-              <Avatar src="http://image.noelshack.com/fichiers/2019/27/2/1562076338-odtlcjxafvqbxhnvxcyx.png" />
-            </NavLink>
-          </Menu.Item>
-        </Menu>
-      </StyledHeader>
-    );
+  return (
+    <StyledHeader>
+      <NavLink to="/">
+        <Title style={{ margin: '0px' }}>Art Portfolio</Title>
+      </NavLink>
+      <div>
+        <SNav to="/signup">Signup</SNav>
+        <SNav to="/login">Login</SNav>
+        <SNav to="/" exact>
+          Logout
+        </SNav>
+        <SNav to="/" exact>
+          <Avatar src="http://image.noelshack.com/fichiers/2019/27/2/1562076338-odtlcjxafvqbxhnvxcyx.png" />
+        </SNav>
+      </div>
+    </StyledHeader>
+  );
 }
 
 const StyledHeader = styled(Header)`
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  width: 100%;
+  background-color: #fff;
+`;
+const SNav = styled(NavLink)`
+  display: inline-block;
+  padding: 0 1rem;
+  &.active {
+    border-bottom: #1890ff solid 2px;
+  }
+`;
