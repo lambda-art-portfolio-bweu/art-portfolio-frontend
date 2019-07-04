@@ -16,6 +16,7 @@ class NormalLoginForm extends React.Component {
         return null;
       } else {
         this.props.loginArtist(values);
+        this.props.history.push('/');
       }
     });
   };

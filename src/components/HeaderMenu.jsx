@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Layout, Menu, Typography, Avatar } from 'antd';
+import { Layout, Typography, Avatar } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 const { Header } = Layout;
@@ -37,7 +37,9 @@ const StyledHeader = styled(Header)`
 const SNav = styled(NavLink)`
   display: inline-block;
   padding: 0 1rem;
+  color: #2a2a2a;
   &.active {
     border-bottom: #1890ff solid 2px;
+    color: #1890ff;
   }
 `;
