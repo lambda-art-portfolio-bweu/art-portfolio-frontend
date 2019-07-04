@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Layout, Row, Col, Typography, Badge, Tag, Icon, Button } from "antd";
 import { Link } from "react-router-dom";
