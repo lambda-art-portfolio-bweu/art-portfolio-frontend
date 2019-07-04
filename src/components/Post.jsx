@@ -8,6 +8,8 @@ const { Title, Paragraph } = Typography;
 
 export default function SinglePost(props) {
 
+  console.log(props.post);
+
   const handleHeart = () => {
     let heartCount = props.post.heart + 1;
     props.updatePost(props.post.id, { heart: heartCount });
@@ -25,7 +27,7 @@ export default function SinglePost(props) {
 
       <Row type="flex" justify="space-between">
         <Col>
-          <StyledH1>{props.post.title}</StyledH1>
+          <StyledH1>{props.post.name}</StyledH1>
         </Col>
         <StyledCenterCol style={{ marginRight: 20 }}>
           <Badge
@@ -55,7 +57,8 @@ export default function SinglePost(props) {
           </Link>
         </Col>
         <StyledCenterCol>
-          {/* {categories.map(cat => (
+          <Tag>{props.post.categories}</Tag>
+          {/* {props.post.categories.map(cat => (
             <Tag>{cat}</Tag>
           ))} */}
         </StyledCenterCol>
