@@ -34,10 +34,27 @@ export default function Profile(props) {
   };
 
   const handleCancel = e => {
-    console.log(e);
     setVisible(false);
   };
 
+  // Profile image
+  const PictureContainer = styled.div`
+    width: 160px;
+    height: 160px;
+    border-radius: 90%;
+    background: url(${camera}) no-repeat center;
+    background-size: 30%;
+  `;
+const ProfileImg = styled.img`
+  width: 100%;
+  border-radius: 90%;
+  transition: all 0.5s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.15;
+  }
+`;
 
   return (
     <MainContainer>
@@ -46,11 +63,6 @@ export default function Profile(props) {
           <PictureContainer>
             <ProfileImg
               src={props.artist.profilePictureUrl}
-              alt={props.artist.artistName}
-              onClick={showModal}
-            />
-            <CameraImg
-              src={camera}
               alt={props.artist.artistName}
               onClick={showModal}
             />
@@ -104,33 +116,6 @@ const ArtistinfoRow = styled(Row)`
 const StyledImgCol = styled(Col)`
   width: 20%;
 `;
-// Image overlay
-const PictureContainer = styled.div`
-  max-width: 160px;
-  position: relative;
-  display: inline-block;
-`;
-const ProfileImg = styled.img`
-  width: 100%;
-  border-radius: 90%;
-`;
-const CameraImg = styled.img`
-  width: 100%;
-  border-radius: 90%;
-  opacity: 0;
-  padding: 3rem;
-  background-color: hsla(0, 0%, 100%, 0.7);
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 99;
-
-  &:hover {
-    opacity:1;
-  }
-`;
-
 const StyledInfoCol = styled(Col)`
   width: 60%;
 `;
