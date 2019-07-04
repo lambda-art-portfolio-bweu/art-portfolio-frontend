@@ -37,25 +37,6 @@ export default function Profile(props) {
     setVisible(false);
   };
 
-  // Profile image
-  const PictureContainer = styled.div`
-    width: 160px;
-    height: 160px;
-    border-radius: 90%;
-    background: url(${camera}) no-repeat center;
-    background-size: 30%;
-  `;
-const ProfileImg = styled.img`
-  width: 100%;
-  border-radius: 90%;
-  transition: all 0.5s;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 0.15;
-  }
-`;
-
   return (
     <MainContainer>
       <ArtistinfoRow type="flex" justify="center">
@@ -105,10 +86,28 @@ const ProfileImg = styled.img`
     </MainContainer>
   );
 }
+
 const MainContainer = styled.div`
   width: 100%;
 `;
-
+  // Profile image hover
+  const PictureContainer = styled.div`
+    width: 160px;
+    height: 160px;
+    border-radius: 90%;
+    background: url(${camera}) no-repeat center;
+    background-size: 30%;
+  `;
+  const ProfileImg = styled.img`
+    width: 100%;
+    border-radius: 90%;
+    transition: all 0.5s;
+  
+    &:hover {
+      cursor: pointer;
+      opacity: 0.15;
+    }
+  `;
 const ArtistinfoRow = styled(Row)`
   align-items: center;
   padding: 2rem 0;
