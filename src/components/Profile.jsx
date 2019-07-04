@@ -38,9 +38,11 @@ export default function Profile(props) {
             <AddPostModal id={props.artist.id} />
           </StyledButtonCol>
         </ArtistinfoRow>
+        
         <Row type="flex" justify="center">
           <StyledButtonsCol />
         </Row>
+
         <StyledPostsRow type="flex" justify="center">
           <Col>
             <PostsGrid

@@ -1,19 +1,36 @@
 import React from "react";
 import styled from "styled-components";
-import { Layout, Row, Col, Typography, Badge, Tag, Icon, Button } from "antd";
+import { Layout, Row, Col, Typography, Badge, Tag, Icon, Button, Modal } from "antd";
 import { Link } from "react-router-dom";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
+const { confirm } = Modal;
 
-export default function SinglePost(props) {
-
-  console.log(props.post);
+export default function Post(props) {
 
   const handleHeart = () => {
     let heartCount = props.post.heart + 1;
     props.updatePost(props.post.id, { heart: heartCount });
   };
+
+  const showDeleteConfirm = () => {
+    confirm({
+      title: "Are you sure you want to delete this post?",
+      content: "This post will be deleted forever.",
+      okText: "Confirm",
+      okType: "danger",
+      cancelText: "Cancel",
+      onOk() {
+        props.deletePost(props.post.id);
+        // Let's do that with Router afterwards so there's no page refresh
+        window.location.pathname=`${props.artistId}`;
+      },
+      onCancel() {
+        return null;
+      }
+    });
+  }
 
   return (
     <StyledContent>
@@ -42,15 +59,14 @@ export default function SinglePost(props) {
               onClick={handleHeart}
             />
           </Badge>
-          <Button onClick={() => props.deletePost(props.post.id)}>
-            Delete
-          </Button>
+          <Button onClick={showDeleteConfirm}>Delete</Button>
+          <Button>Edit</Button>
         </StyledCenterCol>
       </Row>
 
       <Row type="flex" justify="start">
         <Col>
-          <Link to={`/${props.post.artist_id}`} >
+          <Link to={`/${props.post.artist_id}`}>
             <StyledH3 level={3} style={{ marginRight: 20 }}>
               {props.artistName}
             </StyledH3>

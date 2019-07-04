@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchArtists } from "../actions/artists";
 import { fetchPosts } from "../actions/posts";
-import Artists from "../components/artistsblock/ArtistsGrid";
+import ArtistsGrid from "../components/artistsblock/ArtistsGrid";
 
 function ArtistView(props) {
   useEffect(() => {
@@ -14,9 +14,9 @@ function ArtistView(props) {
     // <StyledContent>
     <>
       <h1 style={{ textAlign: "center" }}>
-        Buy Amazing Photos from even more Amazing Photographers
+        Discover Amazing Photos from even more Amazing Photographers
       </h1>
-      <Artists
+      <ArtistsGrid
         artists={props.artists}
         loading={props.loading}
         posts={props.posts}

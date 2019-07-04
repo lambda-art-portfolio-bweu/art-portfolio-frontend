@@ -47,22 +47,25 @@ export const fetchPost = id => dispatch => {
 };
 
 export const deletePost = id => dispatch => {
+  debugger
   dispatch({
     type: types.DELETE_POST
   });
-  Axios.delete(`${postsEndpoint}/${id}`)
-    .then(res => {
-      dispatch({
-        type: types.SUCCESS_POST,
-        payload: res.data
-      });
-    })
-    .catch(err => {
-      dispatch({
-        type: types.ERROR_POST,
-        payload: err.message
-      });
-    });
+  return (
+    Axios.delete(`${postsEndpoint}/${id}`)
+      .then(res => {
+        dispatch({
+          type: types.SUCCESS_POST,
+          payload: res.data
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: types.ERROR_POST,
+          payload: err.message
+        });
+      })
+  )
 };
 
 export const createPost = post => dispatch => {
@@ -98,14 +101,14 @@ export const updatePost = (id, currentPostObj) => dispatch => {
     }
   })
     .then(res => {
-      debugger;
+      // debugger;
       dispatch({
         type: types.SUCCESS_GET_POST,
         payload: res.data
       });
     })
     .catch(err => {
-      debugger;
+      // debugger;
       dispatch({
         type: types.ERROR_POST,
         payload: err.message

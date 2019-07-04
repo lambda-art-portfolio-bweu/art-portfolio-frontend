@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchPost, updatePost } from "../actions/posts";
+import { fetchPost, updatePost, deletePost } from "../actions/posts";
 import { fetchArtist } from "../actions/artists";
 import Post from "../components/Post";
 
@@ -14,7 +14,13 @@ function PostView(props) {
 
   return (
     <>
-      <Post post={props.post} artistName={props.artistName} updatePost={props.updatePost} />
+      <Post
+      post={props.post}
+      artistName={props.artistName}
+      artistId= {props.artistId}
+      updatePost={props.updatePost}
+      deletePost={props.deletePost}
+      />
     </>
   );
 }
@@ -22,11 +28,12 @@ function PostView(props) {
 function mapStateToProps(state) {
   return {
     post: state.postsReducer.currentPost,
-    artistName: state.artistsReducer.currentArtist.artistName
+    artistName: state.artistsReducer.currentArtist.artistName,
+    artistId: state.artistsReducer.currentArtist.id
   };
 }
 
 export default connect(
   mapStateToProps,
-  { fetchPost, fetchArtist, updatePost }
+  { fetchPost, fetchArtist, updatePost, deletePost }
 )(PostView);
