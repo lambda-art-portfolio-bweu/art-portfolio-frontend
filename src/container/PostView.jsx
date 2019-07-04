@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchPost } from "../actions/posts";
+import { fetchPost, updatePost } from "../actions/posts";
 import { fetchArtist } from "../actions/artists";
 import Post from "../components/Post";
 
@@ -14,7 +14,7 @@ function PostView(props) {
 
   return (
     <>
-      <Post post={props.post} artistName={props.artistName} />
+      <Post post={props.post} artistName={props.artistName} updatePost={props.updatePost} />
     </>
   );
 }
@@ -28,5 +28,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchPost, fetchArtist }
+  { fetchPost, fetchArtist, updatePost }
 )(PostView);

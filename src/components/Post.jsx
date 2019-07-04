@@ -8,18 +8,9 @@ const { Title, Paragraph } = Typography;
 
 export default function SinglePost(props) {
 
-  console.log(props);
-
-  // const categories = props.post.categories || [];
-  const [heartCount, setHeartCount] = useState(0);
-
-  useEffect(() => {
-    setHeartCount(heartCount);
-  }, []);
-
-  // Increment counter
   const handleHeart = () => {
-    setHeartCount(heartCount + 1);
+    let heartCount = props.post.heart + 1;
+    props.updatePost(props.post.id, { heart: heartCount });
   };
 
   return (
@@ -38,8 +29,7 @@ export default function SinglePost(props) {
         </Col>
         <StyledCenterCol style={{ marginRight: 20 }}>
           <Badge
-            count={heartCount}
-            overflowCount={999}
+            count={props.post.heart}
             style={{ backgroundColor: "#108ee9" }}
           >
             <Icon

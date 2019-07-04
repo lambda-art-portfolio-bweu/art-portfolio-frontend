@@ -45,6 +45,7 @@ export const fetchPost = id => dispatch => {
       });
     });
 };
+
 export const deletePost = id => dispatch => {
   dispatch({
     type: types.DELETE_POST
@@ -81,6 +82,30 @@ export const createPost = post => dispatch => {
       });
     })
     .catch(err => {
+      dispatch({
+        type: types.ERROR_POST,
+        payload: err.message
+      });
+    });
+};
+
+export const updatePost = (id, currentPostObj) => dispatch => {
+  dispatch({ type: types.UPDATE_POST });
+  Axios.put(`${postsEndpoint}/${id}`, currentPostObj, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token")
+    }
+  })
+    .then(res => {
+      debugger;
+      dispatch({
+        type: types.SUCCESS_GET_POST,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      debugger;
       dispatch({
         type: types.ERROR_POST,
         payload: err.message
