@@ -8,7 +8,7 @@ import AddPostModal from '../AddPostModal';
 //Style
 export const spacerCol = 24;
 
-function PostsList(props) {
+function PostsGrid(props) {
   useEffect(() => {
     props.fetchPosts();
   }, []);
@@ -49,4 +49,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   { fetchPosts, deletePost }
-)(PostsList);
+)(PostsGrid);

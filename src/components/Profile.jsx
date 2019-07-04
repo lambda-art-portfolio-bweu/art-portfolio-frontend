@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Typography } from 'antd';
 import styled from 'styled-components';
 import AddPostModal from './AddPostModal';
-import PostsList from './postsblock/PostsGrid';
+import PostsGrid from './postsblock/PostsGrid';
 
 // Style is under the component
 const { Title, Paragraph } = Typography;
@@ -43,7 +43,7 @@ export default function Profile(props) {
         </Row>
         <StyledPostsRow type="flex" justify="center">
           <Col>
-            <PostsList
+            <PostsGrid
               id={props.artist.id}
             />
           </Col>
