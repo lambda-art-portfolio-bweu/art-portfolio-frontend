@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchPost } from "../actions/posts";
 import { fetchArtist } from "../actions/artists";
-import SinglePost from "../components/SinglePost";
+import Post from "../components/Post";
 
 function PostView(props) {
   const { id, postId } = props.match.params;
@@ -14,7 +14,7 @@ function PostView(props) {
 
   return (
     <>
-      <SinglePost post={props.post} artistName={props.artistName} />
+      <Post post={props.post} artistName={props.artistName} />
     </>
   );
 }
