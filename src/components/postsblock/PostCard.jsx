@@ -7,9 +7,7 @@ export default function PostCard(props) {
   const { post } = props;
 
   return (
-    <Link
-      to={`${props.username}/posts/${props.post.name.replace(/\s+/g, '_')}`}
-    >
+    <Link to={`${props.username}/posts/${encodeURI(props.post.name)}`}>
       <Card
         loading={props.loading}
         hoverable
