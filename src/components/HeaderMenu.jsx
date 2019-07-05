@@ -2,21 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import { Layout, Typography, Avatar } from 'antd';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const { Header } = Layout;
 const { Title } = Typography;
 
-export default function GlobalMenu(props) {
-  console.log(props);
+function GlobalMenu(props) {
+  console.log(props.loggedIn);
   return (
     <StyledHeader>
       <NavLink to="/">
         <Title style={{ margin: '0px' }}>Art Portfolio</Title>
       </NavLink>
       <div>
-        <SNav to="/signup">Signup</SNav>
-        <SNav to="/login">Login</SNav>
-        <LogoutBtn onClick={() => props.history.push('/')}>Logout</LogoutBtn>
+        {!props.loggedIn && (
+          <>
+            <SNav to="/signup">Signup</SNav>
+            <SNav to="/login">Login</SNav>
+          </>
+        )}
+        {props.loggedIn && (
+          <LogoutBtn onClick={() => props.history.push('/')}>Logout</LogoutBtn>
+        )}
         <AvatarNav to="/here" exact>
           <Avatar src="http://image.noelshack.com/fichiers/2019/27/2/1562076338-odtlcjxafvqbxhnvxcyx.png" />
         </AvatarNav>
@@ -59,3 +66,10 @@ const LogoutBtn = styled.span`
     color: red;
   }
 `;
+const mapStateToProps = state => ({
+  loggedIn: state.artistsReducer.loggedIn
+});
+export default connect(
+  mapStateToProps,
+  {}
+)(GlobalMenu);
