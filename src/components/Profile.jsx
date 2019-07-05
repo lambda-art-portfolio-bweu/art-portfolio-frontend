@@ -8,49 +8,46 @@ import PostsGrid from './postsblock/PostsGrid';
 const { Title, Paragraph } = Typography;
 
 export default function Profile(props) {
-
   const handleDescription = str => {
-    props.updateArtist(props.artist.id, { artistDescription: str })
-  }
+    props.updateArtist(props.artist.id, { artistDescription: str });
+  };
 
   const handleName = str => {
-    props.updateArtist(props.artist.id, { artistName: str })
+    props.updateArtist(props.artist.id, { artistName: str });
   };
 
   return (
-      <MainContainer>
-        <ArtistinfoRow type="flex" justify="center">
-          <StyledImgCol>
-            <StyledImg
-              src={props.artist.profilePictureUrl}
-              alt={props.artist.artistName}
-            />
-          </StyledImgCol>
-          <StyledInfoCol>
-            <Title editable={{ onChange: handleName }}>
-              {props.artist.artistName}
-            </Title>
-            <Paragraph editable={{ onChange: handleDescription }}>
-              {props.artist.artistDescription}
-            </Paragraph>
-          </StyledInfoCol>
-          <StyledButtonCol>
-            <AddPostModal id={props.artist.id} />
-          </StyledButtonCol>
-        </ArtistinfoRow>
-        
-        <Row type="flex" justify="center">
-          <StyledButtonsCol />
-        </Row>
+    <MainContainer>
+      <ArtistinfoRow type="flex" justify="center">
+        <StyledImgCol>
+          <StyledImg
+            src={props.artist.profilePictureUrl}
+            alt={props.artist.artistName}
+          />
+        </StyledImgCol>
+        <StyledInfoCol>
+          <Title editable={{ onChange: handleName }}>
+            {props.artist.artistName}
+          </Title>
+          <Paragraph editable={{ onChange: handleDescription }}>
+            {props.artist.artistDescription}
+          </Paragraph>
+        </StyledInfoCol>
+        <StyledButtonCol>
+          <AddPostModal id={props.artist.id} />
+        </StyledButtonCol>
+      </ArtistinfoRow>
 
-        <StyledPostsRow type="flex" justify="center">
-          <Col>
-            <PostsGrid
-              id={props.artist.id}
-            />
-          </Col>
-        </StyledPostsRow>
-        </MainContainer>
+      <Row type="flex" justify="center">
+        <StyledButtonsCol />
+      </Row>
+
+      <StyledPostsRow type="flex" justify="center">
+        <Col>
+          <PostsGrid id={props.artist.id} username={props.artist.username} />
+        </Col>
+      </StyledPostsRow>
+    </MainContainer>
   );
 }
 const MainContainer = styled.div`
