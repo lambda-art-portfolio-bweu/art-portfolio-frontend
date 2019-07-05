@@ -21,6 +21,7 @@ const addToken = store => next => action => {
 const removeToken = store => next => action => {
   if (action.type === LOGOUT_ARTIST) {
     localStorage.removeItem('token');
+    localStorage.removeItem('authId');
   }
   next(action);
 };

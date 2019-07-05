@@ -88,3 +88,16 @@ export const loginArtist = credentials => dispatch => {
 export const logoutArtist = () => {
   return { type: types.LOGOUT_ARTIST };
 };
+
+export const verifyLogin = () => {
+  const token = localStorage.getItem('token');
+  const authId = localStorage.getItem('authId');
+  if (token && authId) {
+    return {
+      type: types.LOGIN_SUCCESS,
+      payload: { token, authId }
+    };
+  } else {
+    return { type: types.LOGIN_ERROR, payload: null };
+  }
+};
