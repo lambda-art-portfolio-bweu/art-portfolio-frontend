@@ -14,6 +14,7 @@ const initialState = {
     }
   ],
   currentArtist: {},
+  authId: null,
   fetching: false,
   adding: false,
   updating: false,
@@ -87,6 +88,7 @@ export default function userReducer(state = initialState, action) {
     case types.LOGOUT_ARTIST:
       return {
         ...state,
+        authId: null,
         loggedIn: false
       };
     case types.LOGIN_SUCCESS:
@@ -95,7 +97,8 @@ export default function userReducer(state = initialState, action) {
         loggingIn: false,
         loggedIn: true,
         loggingOut: false,
-        token: action.payload
+        token: action.payload.token,
+        authId: action.payload.id
       };
     case types.LOGIN_ERROR:
       return {
@@ -103,6 +106,7 @@ export default function userReducer(state = initialState, action) {
         loggingIn: false,
         loggedIn: false,
         loggingOut: false,
+        authId: null,
         error: action.payload
       };
 

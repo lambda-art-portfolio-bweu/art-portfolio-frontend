@@ -77,7 +77,7 @@ export const loginArtist = credentials => dispatch => {
     .then(res => {
       dispatch({
         type: types.LOGIN_SUCCESS,
-        payload: res.data.token
+        payload: res.data
       });
     })
     .catch(err => {
