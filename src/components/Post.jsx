@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Layout, Row, Col, Typography, Badge, Tag, Icon, Button, Modal } from "antd";
+import { Layout, Row, Col, Typography, Badge, Tag, Icon, Button, Modal, Input } from "antd";
 import { Link } from "react-router-dom";
 
 import camera from "../assets/camera.svg";
@@ -10,6 +10,8 @@ const { Title, Paragraph } = Typography;
 const { confirm } = Modal;
 
 export default function Post(props) {
+  const [visible, setVisible] = useState(false);
+  const [imageURL, setImageURL] = useState("");
 
   const handleHeart = () => {
     let heartCount = props.post.heart + 1;
@@ -22,6 +24,23 @@ export default function Post(props) {
 
   const handleDescription = str => {
     props.updatePost(props.post.id, { description: str });
+  };
+
+  const handleURL = target => {
+    setImageURL(target.value);
+  };
+
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = e => {
+    props.updatePost(props.post.id, { pictureUrl: imageURL });
+    setVisible(false);
+  };
+
+  const handleCancel = e => {
+    setVisible(false);
   };
 
   const showDeleteConfirm = () => {
@@ -46,9 +65,30 @@ export default function Post(props) {
     <StyledContent>
       <Row type="flex" justify="center">
         <Col>
+          <HeroImg
+            src={props.post.pictureUrl}
+            alt={props.artistName}
+          />
           <PictureContainer>
-            <HeroImg src={props.post.pictureUrl} alt="" />
+            <OverlayDiv>
+              <Button onClick={showModal} style={{ marginRight: 10 }}>
+                Edit image
+              </Button>
+              <Button onClick={showDeleteConfirm}>Delete post</Button>
+            </OverlayDiv>
           </PictureContainer>
+          <Modal
+            title="Update image"
+            visible={visible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <Input
+              placeholder="Add your new image URL"
+              id="url"
+              onChange={e => handleURL(e.target)}
+            />
+          </Modal>
         </Col>
       </Row>
 
@@ -71,7 +111,6 @@ export default function Post(props) {
               onClick={handleHeart}
             />
           </Badge>
-          <Button onClick={showDeleteConfirm}>Delete</Button>
         </StyledCenterCol>
       </Row>
 
@@ -105,19 +144,26 @@ export default function Post(props) {
 const PictureContainer = styled.div`
   width: 960px;
   padding-top: 2rem;
-  background: url(${camera}) no-repeat center;
-  background-size: 5%;
-  position:relative;
+  /* background: url(${camera}) no-repeat center;
+  background-size: 5%; */
+  z-index:95;
 `;
 const HeroImg = styled.img`
   width: 100%;
   transition: all 0.6s;
 
   &:hover {
-    cursor: pointer;
-    opacity: 0.5;
+    /* cursor: pointer; */
+    opacity: 0.8;
   }
 `;
+const OverlayDiv = styled.div`
+  z-index: 97;
+  position: absolute;
+  bottom:3rem;
+  right:1rem;
+`;
+
 const StyledCenterCol = styled(Col)`
   display: flex;
   justify-content: center;
