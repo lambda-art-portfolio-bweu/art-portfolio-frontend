@@ -13,7 +13,10 @@ function ProfileView(props) {
 
   return (
     <>
-      <Profile artist={props.artist} updateArtist={props.updateArtist}/>
+      <Profile
+      artist={props.artist}
+      updateArtist={props.updateArtist}
+      />
     </>
   );
 }

@@ -52,7 +52,7 @@ export const updateArtist = (id, currentArtistObj) => dispatch => {
     }
   })
   .then(res => {
-    debugger
+    // debugger
     dispatch({
       type: types.SUCCESS_GET_ARTIST,
       payload: res.data,
