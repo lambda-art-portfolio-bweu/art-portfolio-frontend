@@ -51,13 +51,13 @@ export const updateArtist = (id, currentArtistObj) => dispatch => {
       Authorization: localStorage.getItem('token')
     }
   })
-    .then(res => {
-      debugger;
-      dispatch({
-        type: types.SUCCESS_GET_ARTIST,
-        payload: res.data
-      });
+  .then(res => {
+    // debugger
+    dispatch({
+      type: types.SUCCESS_GET_ARTIST,
+      payload: res.data
     })
+  })
     .catch(err => {
       // debugger
       dispatch({
