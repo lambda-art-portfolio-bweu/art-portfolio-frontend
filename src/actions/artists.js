@@ -32,7 +32,7 @@ export const fetchArtist = id => dispatch => {
     .then(res => {
       dispatch({
         type: types.SUCCESS_GET_ARTIST,
-        payload: res.data.artist[0]
+        payload: res.data
       });
     })
     .catch(err => {
@@ -44,27 +44,27 @@ export const fetchArtist = id => dispatch => {
 };
 
 export const updateArtist = (id, currentArtistObj) => dispatch => {
-  dispatch ({type: types.UPDATE_ARTIST});
+  dispatch({ type: types.UPDATE_ARTIST });
   Axios.put(`${artistEndpoint}/${id}`, currentArtistObj, {
     headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token")
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token')
     }
   })
-  .then(res => {
-    debugger
-    dispatch({
-      type: types.SUCCESS_GET_ARTIST,
-      payload: res.data,
+    .then(res => {
+      debugger;
+      dispatch({
+        type: types.SUCCESS_GET_ARTIST,
+        payload: res.data
+      });
     })
-  })
-  .catch(err => {
-    // debugger
-    dispatch({
-      type: types.ERROR_ARTIST,
-      payload: err.message
-    })
-  })
+    .catch(err => {
+      // debugger
+      dispatch({
+        type: types.ERROR_ARTIST,
+        payload: err.message
+      });
+    });
 };
 
 export const registerArtist = credentials => dispatch => {
