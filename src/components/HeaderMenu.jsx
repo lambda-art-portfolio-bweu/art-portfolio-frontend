@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import { Layout, Typography, Avatar } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logoutArtist } from '../actions/artists';
 
 const { Header } = Layout;
 const { Title } = Typography;
 
 function GlobalMenu(props) {
-  console.log(props.loggedIn);
+  const logout = () => {
+    props.logoutArtist();
+    props.history.push('/');
+  };
   return (
     <StyledHeader>
       <NavLink to="/">
@@ -21,9 +25,7 @@ function GlobalMenu(props) {
             <SNav to="/login">Login</SNav>
           </>
         )}
-        {props.loggedIn && (
-          <LogoutBtn onClick={() => props.history.push('/')}>Logout</LogoutBtn>
-        )}
+        {props.loggedIn && <LogoutBtn onClick={logout}>Logout</LogoutBtn>}
         <AvatarNav to="/here" exact>
           <Avatar src="http://image.noelshack.com/fichiers/2019/27/2/1562076338-odtlcjxafvqbxhnvxcyx.png" />
         </AvatarNav>
@@ -71,5 +73,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  {}
+  { logoutArtist }
 )(GlobalMenu);
