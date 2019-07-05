@@ -6,7 +6,8 @@ import { NavLink } from 'react-router-dom';
 const { Header } = Layout;
 const { Title } = Typography;
 
-export default function GlobalMenu() {
+export default function GlobalMenu(props) {
+  console.log(props);
   return (
     <StyledHeader>
       <NavLink to="/">

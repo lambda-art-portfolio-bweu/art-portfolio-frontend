@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { Layout } from 'antd';
 import styled from 'styled-components';
 
@@ -11,11 +11,12 @@ import Signup from './components/Signup';
 import HeaderMenu from './components/HeaderMenu';
 
 const { Content } = Layout;
+const HeaderMenuWithRoute = withRouter(HeaderMenu);
 
 export default function App() {
   return (
     <StyledLayout className="layout">
-      <HeaderMenu />
+      <HeaderMenuWithRoute />
       <StyledContent>
         <Switch>
           <Route path="/" exact component={Homepage} />
