@@ -13,6 +13,8 @@ export default function Profile(props) {
   const [visible, setVisible] = useState(false);
   const [imageURL, setImageURL] = useState('');
 
+
+
   const handleDescription = str => {
     props.updateArtist(props.artist.id, { artistDescription: str })
   };
@@ -31,6 +33,7 @@ export default function Profile(props) {
 
   const handleOk = e => {
     props.updateArtist(props.artist.id, { profilePictureUrl: imageURL });
+    
     setVisible(false);
   };
 

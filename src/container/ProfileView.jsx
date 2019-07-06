@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchArtist, updateArtist } from '../actions/artists';
+import { fetchArtist, updateArtist, fetchArtists } from '../actions/artists';
 import Profile from '../components/Profile';
 
 function ProfileView(props) {
@@ -10,6 +10,12 @@ function ProfileView(props) {
   useEffect(() => {
     props.fetchArtist(id);
   }, []);
+
+  // Fetch all the artists when profile picture is updated
+  // so the picture in the menu is also updated
+  useEffect(() => {
+    props.fetchArtists();
+  }, [props.artist]);
 
   return (
     <>
@@ -29,5 +35,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchArtist, updateArtist }
+  { fetchArtist, updateArtist, fetchArtists }
 )(ProfileView);

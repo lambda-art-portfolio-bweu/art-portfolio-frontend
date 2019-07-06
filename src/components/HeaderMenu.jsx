@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Layout, Typography, Avatar } from 'antd';
 import { NavLink } from 'react-router-dom';
@@ -9,10 +9,21 @@ const { Header } = Layout;
 const { Title } = Typography;
 
 function GlobalMenu(props) {
+  const [artist, setArtist] = useState({profilePictureUrl: '', username: ''});
+
   const logout = () => {
     props.logoutArtist();
     props.history.push('/');
   };
+  
+  useEffect(() => {
+    if(props.authId) {
+      const activeArtist = props.artists
+        .find(artist => artist.id === parseInt(props.authId));
+        setArtist(activeArtist)
+    }
+  }, [props.artists])
+
   return (
     <StyledHeader>
       <NavLink to="/">
@@ -28,8 +39,8 @@ function GlobalMenu(props) {
         {props.loggedIn && 
         <>
         <LogoutBtn onClick={logout}>Logout</LogoutBtn>
-        <AvatarNav to="/here" exact>
-          <Avatar src="http://image.noelshack.com/fichiers/2019/27/2/1562076338-odtlcjxafvqbxhnvxcyx.png" />
+        <AvatarNav to={`/${artist.username}`} exact>
+          <Avatar src={artist.profilePictureUrl} />
         </AvatarNav> 
         </> }
       </div>
@@ -73,7 +84,9 @@ const LogoutBtn = styled.span`
   }
 `;
 const mapStateToProps = state => ({
-  loggedIn: state.artistsReducer.loggedIn
+  loggedIn: state.artistsReducer.loggedIn,
+  artists: state.artistsReducer.artists,
+  authId: state.artistsReducer.authId
 });
 export default connect(
   mapStateToProps,
