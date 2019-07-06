@@ -51,15 +51,13 @@ export const updateArtist = (id, currentArtistObj) => dispatch => {
       Authorization: localStorage.getItem('token')
     }
   })
-  .then(res => {
-    // debugger
-    dispatch({
-      type: types.SUCCESS_GET_ARTIST,
-      payload: res.data
+    .then(res => {
+      dispatch({
+        type: types.SUCCESS_GET_ARTIST,
+        payload: res.data
+      });
     })
-  })
     .catch(err => {
-      // debugger
       dispatch({
         type: types.ERROR_ARTIST,
         payload: err.message
@@ -79,7 +77,7 @@ export const loginArtist = credentials => dispatch => {
     .then(res => {
       dispatch({
         type: types.LOGIN_SUCCESS,
-        payload: res.data.token
+        payload: res.data
       });
     })
     .catch(err => {
@@ -89,4 +87,17 @@ export const loginArtist = credentials => dispatch => {
 
 export const logoutArtist = () => {
   return { type: types.LOGOUT_ARTIST };
+};
+
+export const verifyLogin = () => {
+  const token = localStorage.getItem('token');
+  const authId = localStorage.getItem('authId');
+  if (token && authId) {
+    return {
+      type: types.LOGIN_SUCCESS,
+      payload: { token, authId }
+    };
+  } else {
+    return { type: types.LOGIN_ERROR, payload: null };
+  }
 };
