@@ -18,6 +18,7 @@ function GlobalMenu(props) {
   
   useEffect(() => {
     if(props.authId) {
+      // console.log(props.authId)
       const activeArtist = props.artists
         .find(artist => artist.id === parseInt(props.authId));
         setArtist(activeArtist)

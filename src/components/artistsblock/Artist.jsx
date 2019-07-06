@@ -30,7 +30,6 @@ export default function Artist(props) {
           <Meta
             avatar={<Avatar src={artist.profilePictureUrl} />}
             title={artist.artistName}
-            description={artist.email}
           />
         </Skeleton>
       </Card>
