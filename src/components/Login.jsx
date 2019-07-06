@@ -1,33 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginArtist } from '../actions/artists';
 import styled from 'styled-components';
-import { Form, Icon, Input, Button, Typography, Layout, Row } from 'antd';
+import { Form, Icon, Input, Button, Typography, Layout, Row, message } from 'antd';
 
 const { Title } = Typography;
 const { Content } = Layout;
 
-class NormalLoginForm extends React.Component {
-  handleSubmit = e => {
+const NormalLoginForm = (props)  => {
+  useEffect(() => {
+    if(props.error) {
+      message.error(props.error)
+    }
+  }, [props.error])
+  useEffect(()=> {
+    if (props.loggedIn) {
+      props.history.push('/')
+    }
+  }, [props.loggedIn])
+
+  const handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    props.form.validateFields((err, values) => {
       if (err) {
         return null;
       } else {
-        this.props.loginArtist(values);
-        this.props.history.push('/');
+        props.loginArtist(values);
       }
     });
   };
 
-  render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = props.form
     return (
       <StyledContent>
         <StyledRow type="flex" justify="center">
           <Title>Login</Title>
-          <Form onSubmit={this.handleSubmit} className="login-form">
+          <Form onSubmit={handleSubmit} className="login-form">
             <Form.Item>
               {getFieldDecorator('username', {
                 rules: [
@@ -71,12 +80,16 @@ class NormalLoginForm extends React.Component {
         </StyledRow>
       </StyledContent>
     );
-  }
 }
 
 const Login = Form.create({ name: 'normal_login' })(NormalLoginForm);
+const mapStateToProps = state => ({
+  error: state.artistsReducer.error,
+  loggedIn: state.artistsReducer.loggedIn,
+  loggingIn: state.artistsReducer.loggingIn
+})
 export default connect(
-  null,
+  mapStateToProps,
   { loginArtist }
 )(Login);
 

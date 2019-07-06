@@ -25,12 +25,16 @@ function GlobalMenu(props) {
             <SNav to="/login">Login</SNav>
           </>
         )}
-        {props.loggedIn && <LogoutBtn onClick={logout}>Logout</LogoutBtn>}
+        {props.loggedIn && 
+        <>
+        <LogoutBtn onClick={logout}>Logout</LogoutBtn>
         <AvatarNav to="/here" exact>
           <Avatar src="http://image.noelshack.com/fichiers/2019/27/2/1562076338-odtlcjxafvqbxhnvxcyx.png" />
-        </AvatarNav>
+        </AvatarNav> 
+        </> }
       </div>
     </StyledHeader>
+    
   );
 }
 

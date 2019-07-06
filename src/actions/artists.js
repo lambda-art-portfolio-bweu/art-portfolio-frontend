@@ -81,7 +81,7 @@ export const loginArtist = credentials => dispatch => {
       });
     })
     .catch(err => {
-      dispatch({ type: types.LOGIN_ERROR, payload: err.message });
+      dispatch({ type: types.LOGIN_ERROR, payload: err.response.data });
     });
 };
 
