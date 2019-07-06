@@ -81,7 +81,7 @@ export const loginArtist = credentials => dispatch => {
       });
     })
     .catch(err => {
-      dispatch({ type: types.LOGIN_ERROR, payload: err.message });
+      dispatch({ type: types.LOGIN_ERROR, payload: err.response.data });
     });
 };
 
@@ -90,12 +90,12 @@ export const logoutArtist = () => {
 };
 
 export const verifyLogin = () => {
-  const token = localStorage.getItem('token');
-  const authId = localStorage.getItem('authId');
-  if (token && authId) {
+  const token = localStorage.getItem('token') || null;
+  const authId = localStorage.getItem('authId') || null;
+  if (!!token && !!authId) {
     return {
       type: types.LOGIN_SUCCESS,
-      payload: { token, authId }
+      payload: { token, id: authId }
     };
   } else {
     return { type: types.LOGIN_ERROR, payload: null };
