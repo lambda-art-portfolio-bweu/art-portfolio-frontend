@@ -9,6 +9,7 @@ import camera from '../assets/camera.svg';
 const { Title, Paragraph } = Typography;
 
 export default function Profile(props) {
+
   const [visible, setVisible] = useState(false);
   const [imageURL, setImageURL] = useState('');
 
@@ -80,7 +81,7 @@ export default function Profile(props) {
 
       <StyledPostsRow type="flex" justify="center">
         <Col>
-          <PostsGrid id={props.artist.id} />
+          <PostsGrid id={props.artist.id} username={props.artist.username} />
         </Col>
       </StyledPostsRow>
     </MainContainer>

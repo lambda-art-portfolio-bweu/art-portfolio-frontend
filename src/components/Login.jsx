@@ -1,9 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import { NavLink } from 'react-router-dom';
-import { loginArtist } from "../actions/artists";
-import styled from "styled-components";
-import { Form, Icon, Input, Button, Typography, Layout, Row } from "antd";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { loginArtist } from '../actions/artists';
+import styled from 'styled-components';
+import { Form, Icon, Input, Button, Typography, Layout, Row } from 'antd';
 
 const { Title } = Typography;
 const { Content } = Layout;
@@ -15,7 +15,8 @@ class NormalLoginForm extends React.Component {
       if (err) {
         return null;
       } else {
-         this.props.loginArtist(values);
+        this.props.loginArtist(values);
+        this.props.history.push('/');
       }
     });
   };
@@ -28,34 +29,28 @@ class NormalLoginForm extends React.Component {
           <Title>Login</Title>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
-              {getFieldDecorator("username", {
+              {getFieldDecorator('username', {
                 rules: [
-                  { required: true, message: "Please input your username!" }
+                  { required: true, message: 'Please input your username!' }
                 ]
               })(
                 <Input
                   prefix={
-                    <Icon
-                      type="user"
-                      style={{ color: "rgba(0,0,0,.25)" }}
-                    />
+                    <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                   }
                   placeholder="Username"
                 />
               )}
             </Form.Item>
             <Form.Item>
-              {getFieldDecorator("password", {
+              {getFieldDecorator('password', {
                 rules: [
-                  { required: true, message: "Please input your Password!" }
+                  { required: true, message: 'Please input your Password!' }
                 ]
               })(
                 <Input
                   prefix={
-                    <Icon
-                      type="lock"
-                      style={{ color: "rgba(0,0,0,.25)" }}
-                    />
+                    <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
                   }
                   type="password"
                   placeholder="Password"
@@ -70,7 +65,7 @@ class NormalLoginForm extends React.Component {
               >
                 Login
               </Button>
-              <NavLink to="/signup"> or signup now</NavLink>
+              <Link to="/signup"> or signup now</Link>
             </Form.Item>
           </Form>
         </StyledRow>
@@ -79,9 +74,11 @@ class NormalLoginForm extends React.Component {
   }
 }
 
-const Login = Form.create({ name: "normal_login" })(NormalLoginForm);
-export default connect(null, { loginArtist })(Login);
-
+const Login = Form.create({ name: 'normal_login' })(NormalLoginForm);
+export default connect(
+  null,
+  { loginArtist }
+)(Login);
 
 const StyledContent = styled(Content)`
   max-width: 960px;

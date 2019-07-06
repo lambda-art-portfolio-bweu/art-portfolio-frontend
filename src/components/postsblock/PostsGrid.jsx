@@ -24,6 +24,7 @@ function PostsGrid(props) {
               post={post}
               key={post.id}
               artistID={props.id}
+              username={props.username}
             />
           ))}
       </Row>
