@@ -1,6 +1,6 @@
-import * as types from "./types";
-import Axios from "axios";
-import * as Const from "./const";
+import * as types from './types';
+import Axios from 'axios';
+import * as Const from './const';
 
 const baseUrl = Const.baseUrl;
 const artistEndpoint = `${Const.baseUrl}/artist`;
@@ -30,14 +30,12 @@ export const fetchArtist = id => dispatch => {
   });
   Axios.get(`${artistEndpoint}/${id}`)
     .then(res => {
-      // debugger
       dispatch({
         type: types.SUCCESS_GET_ARTIST,
-        payload: res.data.artist
+        payload: res.data
       });
     })
     .catch(err => {
-      // debugger
       dispatch({
         type: types.ERROR_ARTIST,
         payload: err.message
@@ -45,7 +43,27 @@ export const fetchArtist = id => dispatch => {
     });
 };
 
-//
+export const updateArtist = (id, currentArtistObj) => dispatch => {
+  dispatch({ type: types.UPDATE_ARTIST });
+  Axios.put(`${artistEndpoint}/${id}`, currentArtistObj, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token')
+    }
+  })
+    .then(res => {
+      dispatch({
+        type: types.SUCCESS_GET_ARTIST,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: types.ERROR_ARTIST,
+        payload: err.message
+      });
+    });
+};
 
 export const registerArtist = credentials => dispatch => {
   Axios.post(`${baseUrl}/auth/register`, credentials)
@@ -59,11 +77,11 @@ export const loginArtist = credentials => dispatch => {
     .then(res => {
       dispatch({
         type: types.LOGIN_SUCCESS,
-        payload: res.data.token
+        payload: res.data
       });
     })
     .catch(err => {
-      dispatch({ type: types.LOGIN_ERROR, payload: err.message });
+      dispatch({ type: types.LOGIN_ERROR, payload: err.response.data });
     });
 };
 
@@ -71,58 +89,15 @@ export const logoutArtist = () => {
   return { type: types.LOGOUT_ARTIST };
 };
 
-// function generateUsers() {
-//   let users = [];
-//   for (let i = 1; i <= 10; i++) {
-//     let id = uuid();
-//     let artistName = faker.name.findName();
-//     let userDescription = faker.lorem.words(20);
-//     let profilePictureUrl = faker.image.avatar();
-//     let username = faker.name.lastName();
-//     let email = faker.internet.email();
-//     let password = faker.random.alphaNumeric(10);
-
-//     users.push({
-//       id,
-//       artistName,
-//       userDescription,
-//       profilePictureUrl,
-//       username,
-//       email,
-//       password
-//     });
-//   }
-//   let posts = generatePosts()
-
-//   return new Promise((resolve, reject) => {
-//     if (!users) {
-//       reject("Couldn't fetch Artists");
-//     }
-//     resolve(users.map((user, i) => ({
-//       ...user,
-//       pictureUrl: posts[i]["pictureUrl"]
-//     })));
-//   });
-// }
-
-// function generateUser() {
-//   let id = uuid();
-//   let artistName = faker.name.findName();
-//   let userDescription = faker.lorem.words(20);
-//   let profilePictureUrl = faker.image.avatar();
-//   let username = faker.name.lastName();
-//   let email = faker.internet.email();
-//   let password = faker.random.alphaNumeric(10);
-
-//   const user = {
-//     id,
-//     artistName,
-//     userDescription,
-//     profilePictureUrl,
-//     username,
-//     email,
-//     password
-//   };
-
-//   return user;
-// }
+export const verifyLogin = () => {
+  const token = localStorage.getItem('token') || null;
+  const authId = localStorage.getItem('authId') || null;
+  if (!!token && !!authId) {
+    return {
+      type: types.LOGIN_SUCCESS,
+      payload: { token, id: authId }
+    };
+  } else {
+    return { type: types.LOGIN_ERROR, payload: null };
+  }
+};

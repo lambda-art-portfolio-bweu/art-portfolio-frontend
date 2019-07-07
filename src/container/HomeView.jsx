@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchArtists } from "../actions/artists";
 import { fetchPosts } from "../actions/posts";
-import Artists from "../components/Artists";
-import { Layout } from "antd";
-import styled from "styled-components";
-const { Content } = Layout;
+import ArtistsGrid from "../components/artistsblock/ArtistsGrid";
 
 function ArtistView(props) {
   useEffect(() => {
@@ -17,9 +14,9 @@ function ArtistView(props) {
     // <StyledContent>
     <>
       <h1 style={{ textAlign: "center" }}>
-        Buy Amazing Photos from even more Amazing Photographers
+        Discover Amazing Photos from even more Amazing Photographers
       </h1>
-      <Artists
+      <ArtistsGrid
         artists={props.artists}
         loading={props.loading}
         posts={props.posts}
@@ -41,9 +38,3 @@ export default connect(
   mapStateToProps,
   { fetchArtists, fetchPosts }
 )(ArtistView);
-
-const StyledContent = styled(Content)`
-  max-width: 960px;
-  margin: 0 auto;
-  margin-bottom: 2rem;
-`;

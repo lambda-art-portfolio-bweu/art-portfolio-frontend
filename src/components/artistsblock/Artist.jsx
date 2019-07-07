@@ -1,8 +1,7 @@
-import React from "react";
-import { Card, Skeleton, Avatar } from "antd";
-import { Carousel } from "antd";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Card, Skeleton, Avatar, Carousel } from 'antd';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
 const Image = styled.img`
@@ -14,7 +13,7 @@ export default function Artist(props) {
     props.posts.filter(post => post.artist_id === artist.id) || [];
 
   return (
-    <Link to={`/${artist.id}`}>
+    <Link to={`/${artist.username}`}>
       <Card
         loading={props.loading}
         hoverable
@@ -31,7 +30,6 @@ export default function Artist(props) {
           <Meta
             avatar={<Avatar src={artist.profilePictureUrl} />}
             title={artist.artistName}
-            description={artist.email}
           />
         </Skeleton>
       </Card>
